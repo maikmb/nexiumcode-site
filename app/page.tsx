@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("");
@@ -101,8 +102,7 @@ export default function Home() {
                   <Link
                     key={item.href}
                     href="/planos"
-                    className="text-gray-400 hover:text-green-400 transition"
-                  >
+                    className="text-gray-400 hover:text-green-400 transition">
                     {item.label}
                   </Link>
                 );
@@ -161,7 +161,7 @@ export default function Home() {
           </button>
 
 
-          <a href="#servicos">
+          <a href="#produtos">
             <button 
               className="relative px-8 py-4 rounded-2xl font-semibold 
               border border-green-400/40 text-green-400
@@ -177,9 +177,87 @@ export default function Home() {
               hover:text-black
               hover:shadow-[0_0_15px_rgba(74,222,128,0.5)]">
                 
-              <span className="relative z-10">Ver serviços</span>
+              <span className="relative z-10">Ver produtos</span>
             </button>
           </a>
+        </div>
+      </section>
+
+      <section className="px-6 py-32">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+          {/* imagem */}
+          <div className="relative group">
+          <div className="absolute -inset-2 bg-green-400/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+            <div className="
+              relative
+              rounded-3xl
+              overflow-hidden
+              border border-white/10
+              bg-white/5 backdrop-blur
+              shadow-xl
+              transition-all duration-500
+              group-hover:scale-[1.02]
+              group-hover:border-green-400/40">
+
+              <Image
+                src="/nexium.png"
+                alt="Produto Nexium"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+
+              {/* overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
+            </div>
+          </div>
+
+          {/* conteudo (direita) */}
+          <div>
+            <h2 className="text-4xl text-blue-400 font-bold mb-6">
+              Crie, venda e escale seu negócio digital
+            </h2>
+
+            <p className="text-gray-400 mb-8">
+              De sites institucionais a sistemas completos, desenvolvemos soluções
+              que realmente geram resultado.
+            </p>
+
+            {/* lista */}
+            <ul className="space-y-3 mb-10">
+              {[
+                "Sistemas personalizados",
+                "Landing pages de alta conversão",
+                "Automação de processos",
+                "Produtos digitais escaláveis",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-gray-300">
+                  <span className="text-green-400">✔</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            {/* números */}
+            <div className="grid grid-cols-3 gap-6">
+              <div>
+                <p className="text-2xl font-bold text-green-400">+...</p>
+                <span className="text-sm text-gray-400">Projetos</span>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-green-400">+...</p>
+                <span className="text-sm text-gray-400">Clientes ativos</span>
+              </div>
+
+              <div>
+                <p className="text-2xl font-bold text-green-400">100%</p>
+                <span className="text-sm text-gray-400">Foco em resultado</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -234,10 +312,9 @@ export default function Home() {
                     ${isOpen 
                       ? "scale-105 border-green-400/50 shadow-lg shadow-green-500/10 p-10" 
                       : "hover:scale-105 hover:border-green-400/40 p-8"}
-                  `}
-                >
+                  `}>
 
-                  {/* TOPO */}
+                  {/* nome do produto */}
                   <div className="flex justify-between items-center mb-2">
                     <h3 className="text-xl font-semibold text-green-400">
                       {product.name}
@@ -249,13 +326,13 @@ export default function Home() {
                         text-green-400 text-2xl
                         animate-bounce
                         transition-transform duration-300
-                        ${isOpen ? "rotate-180" : ""}
-                      `}>
+                        ${isOpen ? "rotate-180" : ""}`
+                      }>
                       ↓
                     </span>
                   </div>
 
-                  {/* DESCRIÇÃO */}
+                  {/* descrição */}
                   <p className="text-gray-400 mb-3">
                     {product.desc}
                   </p>
@@ -265,13 +342,12 @@ export default function Home() {
                     {isOpen ? "Clique para fechar" : "Clique para ver mais"}
                   </p>
 
-                  {/* EXPANSÃO */}
+                  {/* expansão */}
                     <div
                       className={`
                         transition-all duration-500 overflow-hidden
                         ${isOpen ? "max-h-60 opacity-100 mt-4" : "max-h-0 opacity-0"}
-                      `}
-                    >
+                      `}>
 
                       <ul className="text-sm text-gray-400 space-y-2 mb-4">
                         {product.features?.map((feature, index) => (
@@ -279,7 +355,7 @@ export default function Home() {
                         ))}
                       </ul>
 
-                  {/* BOTÃO LINK */}
+                  {/* link */}
                   <a
                     href={product.link}
                     target={product.link?.startsWith("http") ? "_blank" : "_self"}
@@ -353,9 +429,7 @@ export default function Home() {
               </div>
 
               <div className="mt-8">
-                <span className="text-green-400 text-sm font-medium">
-                  Saiba mais →
-                </span>
+                
               </div>
             </div>
           ))}
@@ -461,6 +535,7 @@ export default function Home() {
               img: "/maik.png",
               linkedin: "https://www.linkedin.com/in/maikmb/",
               instagram: "https://www.instagram.com/maikmb/",
+              github: "https://github.com/maikmb",
             },
             {
               name: "Djair Silva",
@@ -468,6 +543,8 @@ export default function Home() {
               img: "/djair.png",
               linkedin: "https://www.linkedin.com/in/djair-silva/",
               instagram: "https://www.instagram.com/dja_sil/",
+              github: "https://github.com/sniperpsp",
+
             },
             {
               name: "Diego Monteiro",
@@ -475,6 +552,7 @@ export default function Home() {
               img: "/diego.png",
               linkedin: "https://www.linkedin.com/in/diego-monteiro-sousa-8a579b5a/",
               instagram: "https://www.instagram.com/dmz_4.5/",
+              github: "https://github.com/diegomonteirosousa",
             },
 
           ].map((person, i) => (
@@ -490,7 +568,7 @@ export default function Home() {
               hover:border-green-400
               hover:shadow-[0_0_25px_rgba(72,187,120,0.25)]">
 
-              {/* FOTO */}
+              {/* foto */}
               <div className="mb-6 flex justify-center">
                 <img
                   src={person.img}
@@ -502,17 +580,17 @@ export default function Home() {
                   group-hover:scale-110"/>
               </div>
 
-              {/* NOME */}
+              {/* nome */}
               <h3 className="text-lg font-semibold text-green-400">
                 {person.name}
               </h3>
 
-              {/* CARGO */}
+              {/* cargo */}
               <p className="text-gray-400 text-sm mb-6">
                 {person.role}
               </p>
 
-              {/* ICONES */}
+              {/* icons */}
               <div className="flex justify-center gap-4">
 
                 {/* LINKEDIN */}
@@ -533,6 +611,24 @@ export default function Home() {
                   </svg>
                 </a>
 
+                {/* GITHUB */}
+                <a
+                  href={person.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center rounded-full 
+                  border border-white/20 text-white 
+                  hover:border-green-400 hover:text-green-400 transition">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.42 7.86 10.96.57.1.78-.25.78-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.76.4-1.27.73-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.28 1.2-3.08-.12-.3-.52-1.52.11-3.16 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 2.92-.39c.99 0 2 .13 2.92.39 2.22-1.5 3.2-1.18 3.2-1.18.63 1.64.23 2.86.11 3.16.75.8 1.2 1.82 1.2 3.08 0 4.43-2.68 5.4-5.24 5.68.41.35.77 1.04.77 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.21.67.79.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+                  </svg>
+                </a>
+                
                 {/* INSTAGRAM */}
                 <a
                   href={person.instagram}
@@ -557,7 +653,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* contato */}
       <section
         id="contato"
         className="relative px-6 py-36 text-center overflow-hidden">
@@ -601,14 +697,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="px-6 py-10 bg-black text-gray-400 text-sm border-t border-white/10 mt-24">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
 
           {/* ESQUERDA */}
           <div className="flex flex-col justify-center">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Alta <span className="text-green-400">tecnologia</span>
+              Nexium <span className="text-blue-400">Code</span>
             </h3>
 
             <p className="text-gray-400 max-w-md leading-relaxed mb-6">
@@ -617,16 +712,27 @@ export default function Home() {
 
           </div>
 
-          {/* DIREITA */}
-          <div className="flex flex-col md:items-end justify-center gap-2 text-gray-400">
-            <h4 className="text-white font-semibold mb-2">Navegação</h4>
+        {/* DIREITA */}
+          <div className="flex flex-col md:items-end justify-center gap-3 text-gray-400">
+            <h4 className="text-blue-400 font-semibold mb-2">Contatos</h4>
 
-            <a href="#produtos" className="hover:text-green-400 transition">Produtos</a>
-            <a href="#servicos" className="hover:text-green-400 transition">Serviços</a>
-            <a href="#processo" className="hover:text-green-400 transition">Processo</a>
-            <a href="#contato" className="hover:text-green-400 transition">Contato</a>
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/company/nexiumcode/about/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-green-400 transition"
+            >
+              LinkedIn: Nexium Code
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:relacionamento@nexiumcode.com.br"
+              className="hover:text-green-400 transition">
+              relacionamento@nexiumcode.com.br
+            </a>
           </div>
-
         </div>
 
         {/* copy right */}
