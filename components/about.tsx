@@ -4,16 +4,16 @@ import Image from "next/image";
 
 export default function About() {
 return (
-    <section className="px-6 py-32">
+    <section id="sobre" className="px-6 py-32">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
-            {/* imagem */}
+            {/* IMAGEM */}
             <div className="relative group">
             <div className="absolute -inset-2 bg-green-400/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
             <div
                 className="
-                relative
+                relative z-10
                 rounded-3xl
                 overflow-hidden
                 border border-white/10
@@ -24,30 +24,30 @@ return (
                 group-hover:border-green-400/40"
             >
                 <Image
-                src="/nexium.png"
-                alt="Produto Nexium"
+                src="/blog-1.png"
+                alt="Blog Nexium"
                 width={800}
                 height={600}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                priority
                 />
 
-                {/* overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             </div>
             </div>
 
-            {/* conteudo */}
+            {/* CONTEÚDO */}
             <div>
-            <h2 className="text-4xl text-blue-400 font-bold mb-6">
-                Crie, venda e escale seu negócio digital
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                <span className="text-white">Crie, venda e escale seu </span>
+                <span className="text-blue-400">negócio digital</span>
             </h2>
 
-            <p className="text-gray-400 mb-8">
+            <p className="text-gray-400 mb-8 text-lg">
                 De sites institucionais a sistemas completos, desenvolvemos soluções
                 que realmente geram resultado.
             </p>
 
-            {/* lista */}
             <ul className="space-y-3 mb-10">
                 {[
                 "Sistemas personalizados",
@@ -62,15 +62,14 @@ return (
                 ))}
             </ul>
 
-            {/* números */}
             <div className="grid grid-cols-3 gap-6">
                 <div>
-                <p className="text-2xl font-bold text-green-400">+...</p>
+                <p className="text-2xl font-bold text-green-400">+50</p>
                 <span className="text-sm text-gray-400">Projetos</span>
                 </div>
 
                 <div>
-                <p className="text-2xl font-bold text-green-400">+...</p>
+                <p className="text-2xl font-bold text-green-400">+20</p>
                 <span className="text-sm text-gray-400">Clientes ativos</span>
                 </div>
 
@@ -84,4 +83,4 @@ return (
         </div>
         </section>
     );
-    }
+}

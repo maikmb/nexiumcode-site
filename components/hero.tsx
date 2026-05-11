@@ -2,8 +2,8 @@ export default function Hero() {
 return (
     <section className="flex flex-col items-center justify-center text-center px-6 pt-40 pb-32">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight">
-            Soluções digitais que{" "}
-            <span className="text-blue-400">fazem seu negócio evoluir</span>
+            Onde sua ideia se {" "}
+            <span className="text-blue-400">transforma em solução</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-10">

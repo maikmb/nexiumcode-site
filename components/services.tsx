@@ -21,8 +21,8 @@ type Service = {
                 className="bg-black/40 border border-white/10 p-10 rounded-3xl 
                 hover:scale-105 hover:border-green-400/40 
                 hover:shadow-lg hover:shadow-green-500/10
-                transition-all duration-300 flex flex-col justify-between min-h-[320px]"
-            >
+                transition-all duration-300 flex flex-col justify-between min-h-[320px]">
+                    
                 <div>
                 <h3 className="text-2xl font-semibold mb-4 text-green-400">
                     {item.title}

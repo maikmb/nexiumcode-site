@@ -37,8 +37,8 @@ type Person = {
                 transition-all duration-300
                 hover:scale-105
                 hover:border-green-400
-                hover:shadow-[0_0_25px_rgba(72,187,120,0.25)]"
-            >
+                hover:shadow-[0_0_25px_rgba(72,187,120,0.25)]">
+                    
                 {/* foto */}
                 <div className="mb-6 flex justify-center">
                 <img
@@ -71,14 +71,14 @@ type Person = {
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full 
                     border border-white/20 text-white 
-                    hover:border-green-400 hover:text-green-400 transition"
-                >
+                    hover:border-green-400 hover:text-green-400 transition">
+
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     viewBox="0 0 24 24"
-                    className="w-5 h-5"
-                    >
+                    className="w-5 h-5">
+
                     <path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4v16h-4V8zm7.5 0h3.8v2.2h.1c.5-.9 1.7-2.2 3.6-2.2 3.8 0 4.5 2.5 4.5 5.8V24h-4v-7.5c0-1.8 0-4.2-2.6-4.2-2.6 0-3 2-3 4V24h-4V8z"/>
                     </svg>
                 </a>
@@ -90,8 +90,8 @@ type Person = {
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full 
                     border border-white/20 text-white 
-                    hover:border-green-400 hover:text-green-400 transition"
-                >
+                    hover:border-green-400 hover:text-green-400 transition">
+
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

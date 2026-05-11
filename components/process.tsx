@@ -34,8 +34,8 @@ return (
             ].map((step, i) => (
                 <div
                 key={i}
-                className="group relative flex flex-col items-center text-center"
-                >
+                className="group relative flex flex-col items-center text-center">
+                    
                 {/* CÍRCULO */}
                 <div
                     className="
@@ -48,8 +48,7 @@ return (
                     group-hover:scale-110
                     group-hover:bg-green-400
                     group-hover:text-black
-                    group-hover:shadow-[0_0_20px_rgba(74,222,128,0.6)]"
-                >
+                    group-hover:shadow-[0_0_20px_rgba(74,222,128,0.6)]">
                     {i + 1}
                 </div>
 

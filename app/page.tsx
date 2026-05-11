@@ -30,6 +30,7 @@ export default function Page() {
       name: "AquiBruce",
       desc: "Cardápio digital inteligente para restaurantes aumentarem vendas.",
       link: "https://aquibruce.com.br/",
+      image: "/aquibruce.png",
       features: [
         "Cardápio digital interativo",
         "Cardápio com fotos, categorias e busca instantânea",
@@ -42,12 +43,14 @@ export default function Page() {
       name: "EiBilly",
       desc: "Sistema de agendamento para profissionais.",
       link: "",
+      image: "/eibilly.png",
       features: [],
     },
     {
       name: "EiWhats",
       desc: "Centralize atendimentos de WhatsApp, Instagram e Facebook.",
       link: "",
+      image: "/eiwhats.png",
       features: [],
     },
   ];
@@ -116,9 +119,12 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="scroll-smooth bg-gradient-to-br from-[#020617] via-[#081428] to-[#162E6E] text-white min-h-screen">
+    <main className="pt-[100px] scroll-smooth bg-gradient-to-br from-[#020617] via-[#081428] to-[#162E6E] text-white min-h-screen">
+      
       <Navbar activeSection={activeSection} />
+
       <Hero />
+
       <About />
 
       <Products
@@ -128,10 +134,15 @@ export default function Page() {
       />
 
       <Services services={services} />
+
       <Process />
+
       <Team people={people} />
+
       <Contact />
+
       <Footer />
+
     </main>
   );
 }

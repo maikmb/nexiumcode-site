@@ -25,16 +25,14 @@ return (
                 href="https://www.linkedin.com/company/nexiumcode/about/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-green-400 transition"
-            >
+                className="hover:text-green-400 transition">
                 LinkedIn: Nexium Code
             </a>
 
             {/* Email */}
             <a
                 href="mailto:relacionamento@nexiumcode.com.br"
-                className="hover:text-green-400 transition"
-            >
+                className="hover:text-green-400 transition">
                 relacionamento@nexiumcode.com.br
             </a>
             </div>
