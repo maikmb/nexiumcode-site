@@ -11,7 +11,7 @@ import Process from "../components/process";
 import Team from "../components/team";
 import Contact from "../components/contact";
 import Footer from "../components/footer";
-
+import Intro from "../components/intro";
 
 type Person = {
   name: string;
@@ -25,6 +25,7 @@ type Person = {
 export default function Page() {
   const [activeSection, setActiveSection] = useState("");
   const [activeProduct, setActiveProduct] = useState<number | null>(null);
+  const [showIntro, setShowIntro] = useState(true);
 
   const products = [
     {
@@ -92,13 +93,19 @@ export default function Page() {
       name: "Diego Monteiro",
       role: "Dev",
       img: "/diego.png",
-      linkedin: "https://www.linkedin.com/in/diego-monteiro-sousa-8a579b5a/",
+      linkedin:
+        "https://www.linkedin.com/in/diego-monteiro-sousa-8a579b5a/",
       instagram: "https://www.instagram.com/dmz_4.5/",
       github: "https://github.com/diegomonteirosousa",
     },
   ];
 
   useEffect(() => {
+
+    setTimeout(() => {
+      setShowIntro(false);
+    }, 3000);
+
     const sections = document.querySelectorAll("section");
 
     const observer = new IntersectionObserver(
@@ -121,7 +128,9 @@ export default function Page() {
 
   return (
     <main className="pt-[100px] scroll-smooth bg-gradient-to-br from-[#020617] via-[#081428] to-[#162E6E] text-white min-h-screen">
-      
+
+      <Intro show={showIntro} />
+
       <Navbar activeSection={activeSection} />
 
       <Hero />
