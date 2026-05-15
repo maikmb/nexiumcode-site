@@ -36,7 +36,7 @@ return (
 
             {/* GITHUB */}
             <a
-                href="https://github.com"
+                href="https://github.com/maikmb/nexiumcode-site"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full 
@@ -51,7 +51,7 @@ return (
 
             {/* LINKEDIN */}
             <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/nexiumcode/about/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full 

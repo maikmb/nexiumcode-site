@@ -12,6 +12,7 @@ import Team from "../components/team";
 import Contact from "../components/contact";
 import Footer from "../components/footer";
 
+
 type Person = {
   name: string;
   role: string;
