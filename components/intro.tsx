@@ -16,7 +16,7 @@ type Props = {
             exit={{ opacity: 0 }}
             transition={{ duration: 1 }}
             className="
-                fixed inset-0 z-[999]
+                fixed inset-0 z-999
                 flex items-center justify-center
                 bg-[#020617]"
             >

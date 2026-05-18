@@ -5,41 +5,159 @@ type Service = {
     desc: string;
     };
 
-    export default function Services({ services }: { services: Service[] }) {
+    export default function Services({
+    services,
+    }: {
+    services: Service[];
+    }) {
     return (
-        <section id="servicos" className="px-6 py-32">
-        <h2 className="text-4xl font-bold text-center mb-5 text-blue-400">
-            Serviços
-        </h2>
+        <section
+        id="servicos"
+        className="relative px-6 py-32 overflow-hidden"
+        >
+        {/* BG EFFECT */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 blur-[180px] rounded-full pointer-events-none" />
 
-        <div className="w-16 h-[2px] bg-blue-400 mx-auto mb-15"></div>
+        {/* TITLE */}
+        <div className="text-center mb-20 relative z-10">
+            <span
+            className="
+            inline-block
+            px-4 py-2
+            rounded-full
+            border border-blue-400/20
+            bg-blue-400/10
+            text-blue-300
+            text-sm
+            tracking-wide
+            mb-6"
+            >
+            SOLUÇÕES DIGITAIS
+            </span>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            <h2
+            className="
+            text-5xl md:text-6xl
+            font-black
+            text-white
+            leading-tight"
+            >
+            Serviços que fazem
+            <br />
+            sua marca crescer
+            </h2>
+
+            <p className="text-gray-400 max-w-2xl mx-auto mt-6 text-lg leading-relaxed">
+            Criamos experiências digitais modernas, rápidas e escaláveis
+            para empresas que querem presença forte no mercado.
+            </p>
+        </div>
+
+        {/* CARDS */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto relative z-10">
             {services.map((item, i) => (
             <div
                 key={i}
-                className="bg-black/40 border border-white/10 p-10 rounded-3xl 
-                hover:scale-105 hover:border-green-400/40 
-                hover:shadow-lg hover:shadow-green-500/10
-                transition-all duration-300 flex flex-col justify-between min-h-[320px]">
-                    
-                <div>
-                <h3 className="text-2xl font-semibold mb-4 text-green-400">
+                className="
+                group
+                relative
+                overflow-hidden
+                rounded-[32px]
+                border border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                p-10
+                transition-all duration-500
+                hover:-translate-y-3
+                hover:border-blue-400/40
+                hover:shadow-[0_0_60px_rgba(59,130,246,0.15)]"
+            >
+                {/* GLOW */}
+                <div
+                className="
+                absolute inset-0
+                opacity-0
+                group-hover:opacity-100
+                transition-opacity duration-500
+                bg-gradient-to-br
+                from-blue-500/10
+                via-transparent
+                to-green-400/10"
+                />
+
+                {/* NUMBER */}
+                <span
+                className="
+                text-6xl
+                font-black
+                text-white/5
+                absolute
+                top-6
+                right-6"
+                >
+                0{i + 1}
+                </span>
+
+                {/* CONTENT */}
+                <div className="relative z-10">
+                <div
+                    className="
+                    w-16 h-16
+                    rounded-2xl
+                    bg-gradient-to-br
+                    from-green-500
+                    to-cyan-400
+                    flex items-center justify-center
+                    mb-8
+                    shadow-lg shadow-blue-500/20"
+                >
+                    <div className="w-6 h-6 rounded-full bg-white" />
+                </div>
+
+                <h3 className="text-2xl font-bold text-white mb-4">
                     {item.title}
                 </h3>
 
-                <p className="text-gray-400 mb-6 leading-relaxed">
+                <p className="text-gray-400 leading-relaxed mb-8">
                     {item.desc}
                 </p>
 
-                <ul className="text-sm text-gray-500 space-y-2">
-                    <li>• Alta performance</li>
-                    <li>• Design moderno</li>
-                    <li>• Escalável para crescimento</li>
-                </ul>
+                <div className="space-y-3">
+                    {[
+                    "Alta performance",
+                    "Design moderno",
+                    "Escalável para crescimento",
+                    ].map((feature, index) => (
+                    <div
+                        key={index}
+                        className="flex items-center gap-3 text-sm text-gray-300"
+                    >
+                        <div className="w-2 h-2 rounded-full bg-green-400" />
+
+                        <span>{feature}</span>
+                    </div>
+                    ))}
                 </div>
 
-                <div className="mt-8"></div>
+                {/* BUTTON */}
+                <button
+                className="
+                mt-10
+                w-full
+                py-4
+                rounded-2xl
+                bg-white/5
+                border border-white/10
+                text-white
+                font-medium
+                transition-all duration-300
+                hover:bg-green-600
+                hover:border-green-400
+                hover:shadow-lg hover:shadow-blue-500/30"
+                >
+                    Saiba mais
+                </button>
+                </div>
             </div>
             ))}
         </div>

@@ -10,7 +10,7 @@ return (
             <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-2">
             
             {/* LETREIRO */}
-            <div className="overflow-hidden whitespace-nowrap w-[400px]">
+            <div className="overflow-hidden whitespace-nowrap w-100">
             <div className="animate-marquee inline-block text-green-400 drop-shadow-[0_0_6px_#4ade80]">                Note : Sua necessidade desenhada em cada linha de código.
                 </div>
             </div>
@@ -70,7 +70,7 @@ return (
         </div>
 
         {/* 🔽 NAVBAR */}
-        <header className="fixed top-[40px] w-full z-40 backdrop-blur bg-black/30 border-b border-white/10">
+        <header className="fixed top-10 w-full z-40 backdrop-blur bg-black/30 border-b border-white/10">
             <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
             
             <h1 className="flex items-center gap-2 text-white font-bold text-2xl md:text-3xl">
@@ -101,7 +101,7 @@ return (
                         : "text-gray-300 hover:text-green-400 hover:after:w-full"
                     }
                     after:absolute after:left-0 after:-bottom-1
-                    after:h-[2px] after:w-0 after:bg-green-400
+                    after:h-0.5 after:w-0 after:bg-green-400
                     after:transition-all`}
                     >
                     {item.label}
