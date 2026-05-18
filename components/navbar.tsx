@@ -84,8 +84,8 @@ return (
                 {[
                 { label: "Home", href: "home" },
                 { label: "Sobre nós", href: "sobre" },
-                { label: "Serviços", href: "servicos" },
                 { label: "Produtos", href: "produtos" },
+                { label: "Serviços", href: "servicos" },
                 { label: "Contato", href: "contato" },
                 ].map((item) => {
                 const isActive = activeSection === item.href;

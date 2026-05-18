@@ -21,21 +21,45 @@ export default function Products({
 }: Props) {
   return (
     <section id="produtos" className="px-6 py-24">
-      <h2 className="text-4xl font-bold text-center mb-5 text-blue-400">
-        Nossos Produtos
-      </h2>
+      {/* TITLE */}
+        <div className="text-center mb-20 relative z-10">
+            <span
+            className="
+            inline-block
+            px-4 py-2
+            rounded-full
+            border border-blue-400/20
+            bg-blue-400/10
+            text-blue-300
+            text-sm
+            tracking-wide
+            mb-6"
+            >
+            TECNOLOGIA & PERFORMANCE
+            </span>
 
-      <div className="w-16 h-[2px] bg-blue-400 mx-auto mb-15"></div>
+        <h2
+          className="
+            mt-6 text-5xl md:text-6xl font-black
+            bg-gradient-to-r from-white via-blue-100 to-green-300
+            bg-clip-text text-transparent"
+        >
+          Nossos Produtos
+        </h2>
 
-      <p className="text-gray-400 text-center max-w-3xl mx-auto mb-20">
-        Nossos produtos que fazem a diferença: transformando grandes ideias em
-        ferramentas de alto impacto.
-      </p>
+        <div className="w-24 h-1 rounded-full bg-gradient-to-r from-blue-400 to-green-400 mx-auto mt-6"></div>
 
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-start">
+        <p className="text-gray-400 text-center max-w-2xl mx-auto mt-8 text-lg leading-relaxed">
+          Soluções digitais criadas para transformar processos em resultados.
+          Porque sofrer com planilha em 2026 já deveria ser crime tecnológico.
+        </p>
+      </div>
+
+      {/* CONTEÚDO */}
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
 
         {/* ESQUERDA */}
-        <div className="md:w-1/2 flex justify-center overflow-hidden">
+        <div className="lg:w-1/2 flex justify-center overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{
@@ -45,39 +69,58 @@ export default function Products({
             }}
           >
 
-            {/* IMAGEM PADRÃO */}
+            {/* CARD PADRÃO */}
             <div className="min-w-full flex justify-center">
               <div className="relative group w-[320px] h-[320px]">
 
                 {/* glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-blue-400/20 blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                <div
+                  className="
+                    absolute -inset-2
+                    bg-gradient-to-r from-blue-400/20 to-green-400/20
+                    blur-2xl opacity-0
+                    group-hover:opacity-100
+                    transition duration-500"
+                ></div>
 
                 {/* card */}
                 <div
-                  className="relative w-full h-full rounded-2xl overflow-hidden
-                  bg-white/5 backdrop-blur border border-white/10
-                  transition-all duration-500
-                  group-hover:scale-105
-                  group-hover:-translate-y-2
-                  group-hover:border-green-400/40"
+                  className="
+                    relative w-full h-full rounded-3xl overflow-hidden
+                    border border-white/10
+                    bg-white/5 backdrop-blur-xl
+                    transition-all duration-500
+                    group-hover:scale-105
+                    group-hover:-translate-y-2
+                    group-hover:border-green-400/40"
                 >
                   <img
                     src="/polaroid.png"
                     alt="Nexium Code"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="
+                      w-full h-full object-cover
+                      transition-transform duration-700
+                      group-hover:scale-110"
                   />
 
                   {/* overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                   {/* badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-green-400/20 text-green-400 text-xs font-semibold backdrop-blur">
+                  <div
+                    className="
+                      absolute top-4 left-4
+                      px-3 py-1 rounded-full
+                      bg-green-400/20 border border-green-400/30
+                      text-green-300 text-xs font-semibold
+                      backdrop-blur-md"
+                  >
                     Destaque
                   </div>
 
                   {/* texto */}
-                  <div className="absolute bottom-4 left-4">
-                    <p className="text-white font-semibold text-lg">
+                  <div className="absolute bottom-5 left-5">
+                    <p className="text-white font-bold text-lg">
                       Nexium Code
                     </p>
 
@@ -95,34 +138,53 @@ export default function Products({
                 <div className="relative group w-[320px] h-[320px]">
 
                   {/* glow */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-blue-400/20 blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                  <div
+                    className="
+                      absolute -inset-2
+                      bg-gradient-to-r from-blue-400/20 to-green-400/20
+                      blur-2xl opacity-0
+                      group-hover:opacity-100
+                      transition duration-500"
+                  ></div>
 
                   {/* card */}
                   <div
-                    className="relative w-full h-full rounded-2xl overflow-hidden
-                    bg-white/5 backdrop-blur border border-white/10
-                    transition-all duration-500
-                    group-hover:scale-105
-                    group-hover:-translate-y-2
-                    group-hover:border-green-400/40"
+                    className="
+                      relative w-full h-full rounded-3xl overflow-hidden
+                      border border-white/10
+                      bg-white/5 backdrop-blur-xl
+                      transition-all duration-500
+                      group-hover:scale-105
+                      group-hover:-translate-y-2
+                      group-hover:border-green-400/40"
                   >
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="
+                        w-full h-full object-cover
+                        transition-transform duration-700
+                        group-hover:scale-110"
                     />
 
                     {/* overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                     {/* badge */}
-                    <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-green-400/20 text-green-400 text-xs font-semibold backdrop-blur">
+                    <div
+                      className="
+                        absolute top-4 left-4
+                        px-3 py-1 rounded-full
+                        bg-blue-400/20 border border-blue-400/30
+                        text-blue-300 text-xs font-semibold
+                        backdrop-blur-md"
+                    >
                       Produto
                     </div>
 
                     {/* texto */}
-                    <div className="absolute bottom-4 left-4">
-                      <p className="text-white font-semibold text-lg">
+                    <div className="absolute bottom-5 left-5">
+                      <p className="text-white font-bold text-lg">
                         {product.name}
                       </p>
 
@@ -138,7 +200,7 @@ export default function Products({
         </div>
 
         {/* DIREITA */}
-        <div className="md:w-1/2 flex flex-col gap-8">
+        <div className="lg:w-1/2 flex flex-col gap-5">
           {products.map((product, i) => {
             const isOpen = activeProduct === i;
 
@@ -147,94 +209,123 @@ export default function Products({
                 key={i}
                 onClick={() => setActiveProduct(isOpen ? null : i)}
                 className={`
-                  group cursor-pointer
-                  bg-white/5 border border-white/10
-                  rounded-2xl backdrop-blur
+                  relative overflow-hidden cursor-pointer
+                  rounded-3xl border backdrop-blur-xl
                   transition-all duration-500
-                  overflow-hidden
 
                   ${
                     isOpen
-                      ? "scale-105 border-green-400/50 shadow-lg shadow-green-500/10 p-10"
-                      : "hover:scale-105 hover:border-green-400/40 p-8"
+                      ? `
+                        bg-gradient-to-br from-white/10 to-white/5
+                        border-green-400/40
+                        shadow-[0_0_30px_rgba(74,222,128,0.12)]
+                        p-6 scale-[1.02]`
+                      : `
+                        bg-white/5 border-white/10
+                        hover:border-green-400/30
+                        hover:bg-white/[0.07]
+                        hover:-translate-y-1
+                        p-5`
                   }
                 `}
               >
 
-                {/* HEADER */}
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-xl font-semibold text-green-400">
-                    {product.name}
-                  </h3>
+                {/* brilho */}
+                <div
+                  className="
+                    absolute inset-0 opacity-0 hover:opacity-100
+                    transition duration-700
+                    bg-gradient-to-r from-blue-400/5 via-transparent to-green-400/5"
+                ></div>
 
-                  <span
+                {/* header */}
+                <div className="relative flex justify-between items-center">
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1">
+                      {product.name}
+                    </h3>
+
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {product.desc}
+                    </p>
+                  </div>
+
+                  <div
                     className={`
-                      text-green-400 text-2xl
+                      w-9 h-9 rounded-full
+                      flex items-center justify-center
+                      bg-white/5 border border-white/10
+                      text-green-400 text-lg
                       transition-transform duration-300
                       ${isOpen ? "rotate-180" : ""}
                     `}
                   >
                     ↓
-                  </span>
+                  </div>
                 </div>
 
-                {/* DESCRIÇÃO */}
-                <p className="text-gray-400 mb-3">
-                  {product.desc}
-                </p>
-
-                {/* TEXTO */}
-                <p className="text-xs text-gray-500 mb-2 group-hover:text-green-400 transition">
-                  {isOpen ? "Clique para fechar" : "Clique para ver mais"}
-                </p>
-
-                {/* CONTEÚDO */}
+                {/* conteúdo */}
                 <div
                   className={`
-                    transition-all duration-500 overflow-hidden
+                    overflow-hidden transition-all duration-500
                     ${
                       isOpen
-                        ? "max-h-60 opacity-100 mt-4"
+                        ? "max-h-96 opacity-100 mt-5"
                         : "max-h-0 opacity-0"
                     }
                   `}
                 >
-                  <ul className="text-sm text-gray-400 space-y-2 mb-4">
-                    {product.features?.map((feature, index) => (
-                      <li key={index}>• {feature}</li>
-                    ))}
-                  </ul>
+                  <div className="border-t border-white/10 pt-5">
+                    <ul className="space-y-2 text-sm text-gray-300 mb-6">
+                      {product.features?.map((feature, index) => (
+                        <li
+                          key={index}
+                          className="flex items-center gap-2"
+                        >
+                          <span className="text-green-400">✦</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <a
-                    href={product.link}
-                    target={
-                      product.link?.startsWith("http")
-                        ? "_blank"
-                        : "_self"
-                    }
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="
-                      inline-flex items-center gap-2
-                      px-5 py-2.5 rounded-xl
-                      bg-green-400 text-black text-sm font-semibold
-                      shadow-md shadow-green-400/20
-                      transition-all duration-300
-                      hover:scale-105
-                      hover:shadow-lg hover:shadow-green-400/30
-                      active:scale-95
-                    "
-                  >
-                    Saiba mais →
-
-                  </a>
+                    <a
+                      href={product.link}
+                      target={
+                        product.link?.startsWith("http")
+                          ? "_blank"
+                          : "_self"
+                      }
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="
+                        inline-flex items-center gap-2
+                        px-5 py-2.5 rounded-2xl
+                        bg-gradient-to-r from-green-400 to-emerald-300
+                        text-black font-bold text-sm
+                        transition-all duration-300
+                        hover:scale-105
+                        hover:shadow-[0_0_25px_rgba(74,222,128,0.35)]
+                        active:scale-95"
+                    >
+                      Saiba mais →
+                    </a>
+                  </div>
                 </div>
               </div>
             );
           })}
 
           {/* CARD FINAL */}
-          <div className="border border-dashed border-white/20 p-8 rounded-2xl flex items-center justify-center text-gray-500 hover:border-green-400/30 transition">
+          <div
+            className="
+              rounded-3xl border border-dashed border-white/15
+              bg-white/[0.03]
+              p-6 text-center
+              text-gray-500
+              hover:border-green-400/30
+              hover:text-green-400
+              transition-all duration-300"
+          >
             Novo produto em breve...
           </div>
         </div>
