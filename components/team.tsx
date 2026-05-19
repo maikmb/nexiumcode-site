@@ -106,7 +106,7 @@ type Person = {
                     </div>
 
                     {/* name */}
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                    <h3 className="text-2xl font-bold text-white mb-2 transition group-hover:text-green-400">
                     {person.name}
                     </h3>
 

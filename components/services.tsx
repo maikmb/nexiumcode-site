@@ -109,10 +109,10 @@ type Service = {
                     mb-8
                     shadow-lg shadow-blue-500/20"
                 >
-                    <div className="w-6 h-6 rounded-full bg-white" />
+                    <div className="w-6 h-6 rounded-full bg-white " />
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-2xl font-bold text-white mb-4 transition group-hover:text-green-400">
                     {item.title}
                 </h3>
 
