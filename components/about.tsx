@@ -83,6 +83,7 @@ return (
                 <li
                     key={i}
                     className="
+                    group
                     flex items-center gap-4
                     text-gray-300
                     bg-white/5
@@ -91,10 +92,21 @@ return (
                     px-4 py-3
                     backdrop-blur
                     transition-all duration-300
+                    hover:scale-[1.03]
+                    hover:-translate-y-1
                     hover:border-green-400/20
-                    hover:bg-white/10"
+                    hover:bg-white/10
+                    hover:shadow-[0_0_20px_rgba(74,222,128,0.12)]"
                 >
-                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-green-400/10 text-green-400 text-sm">
+                    <span
+                    className="
+                    flex items-center justify-center
+                    w-8 h-8 rounded-full
+                    bg-green-400/10
+                    text-green-400 text-sm
+                    transition-transform duration-300
+                    group-hover:scale-110"
+                    >
                     ✔
                     </span>
 

@@ -136,25 +136,6 @@ type Service = {
                     </div>
                     ))}
                 </div>
-
-                {/* BUTTON */}
-                <button
-                className="
-                mt-10
-                w-full
-                py-4
-                rounded-2xl
-                bg-white/5
-                border border-white/10
-                text-white
-                font-medium
-                transition-all duration-300
-                hover:bg-green-600
-                hover:border-green-400
-                hover:shadow-lg hover:shadow-blue-500/30"
-                >
-                    Saiba mais
-                </button>
                 </div>
             </div>
             ))}

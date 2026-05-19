@@ -82,10 +82,11 @@ return (
 
             <nav className="hidden md:flex gap-6 text-sm">
                 {[
-                { label: "Home", href: "home" },
+                { label: "Home", href: "" },
                 { label: "Sobre nós", href: "sobre" },
                 { label: "Produtos", href: "produtos" },
                 { label: "Serviços", href: "servicos" },
+                { label: "Colaboradores", href: "colaboradores" },
                 { label: "Contato", href: "contato" },
                 ].map((item) => {
                 const isActive = activeSection === item.href;

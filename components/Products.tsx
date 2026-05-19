@@ -286,26 +286,42 @@ export default function Products({
                     </ul>
 
                     <a
-                      href={product.link}
-                      target={
-                        product.link?.startsWith("http")
-                          ? "_blank"
-                          : "_self"
-                      }
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="
-                        inline-flex items-center gap-2
-                        px-5 py-2.5 rounded-2xl
-                        bg-linear-to-r from-green-400 to-emerald-300
-                        text-black font-bold text-sm
-                        transition-all duration-300
-                        hover:scale-105
-                        hover:shadow-[0_0_25px_rgba(74,222,128,0.35)]
-                        active:scale-95"
+                    href={product.link}
+                    target={
+                      product.link?.startsWith("http")
+                        ? "_blank"
+                        : "_self"
+                    }
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                    className="
+                      group relative z-20 overflow-hidden
+                      inline-flex items-center gap-2
+                      px-5 py-2.5 rounded-2xl
+                      bg-linear-to-r from-green-500 to-emerald-400
+                      text-black font-bold text-sm
+                      transition-all duration-300
+                      hover:scale-105
+                      hover:shadow-[0_0_25px_rgba(74,222,128,0.35)]
+                      active:scale-95"
                     >
+                    <span className="relative z-10">
                       Saiba mais →
-                    </a>
+                    </span>
+
+                    {/* reflexo */}
+                    <div
+                      className="
+                        absolute inset-0
+                        bg-white/20
+                        -translate-x-full
+                        group-hover:translate-x-full
+                        transition-transform duration-700
+                        skew-x-12"
+                    />
+                  </a>
                   </div>
                 </div>
               </div>
