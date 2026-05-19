@@ -127,7 +127,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="pt-[100px] scroll-smooth bg-gradient-to-br from-[#020617] via-[#081428] to-[#162E6E] text-white min-h-screen">
+    <main className="pt-25 scroll-smooth bg-linear-to-br from-[#020617] via-[#081428] to-[#162E6E] text-white min-h-screen">
 
       <Intro show={showIntro} />
 

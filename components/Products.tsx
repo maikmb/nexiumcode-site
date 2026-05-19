@@ -29,8 +29,7 @@ export default function Products({
                 px-4 py-1.5 rounded-full
                 bg-green-400/10 border border-green-400/20
                 text-green-400 text-sm font-medium
-                backdrop-blur-sm
-            "
+                backdrop-blur-sm"
             >
             ✦ Tecnologia & Performance
             </span>
@@ -39,13 +38,13 @@ export default function Products({
         <h2
           className="
             mt-6 text-5xl md:text-6xl font-black
-            bg-gradient-to-r from-white via-blue-100 to-green-300
+            bg-linear-to-r from-white via-blue-100 to-green-300
             bg-clip-text text-transparent"
         >
           Nossos Produtos
         </h2>
 
-        <div className="w-24 h-1 rounded-full bg-gradient-to-r from-blue-400 to-green-400 mx-auto mt-6"></div>
+        <div className="w-24 h-1 rounded-full bg-linear-to-r from-blue-400 to-green-400 mx-auto mt-6"></div>
 
         <p className="text-gray-400 text-center max-w-2xl mx-auto mt-8 text-lg leading-relaxed">
           Soluções digitais criadas para transformar processos em resultados.
@@ -69,13 +68,13 @@ export default function Products({
 
             {/* CARD PADRÃO */}
             <div className="min-w-full flex justify-center">
-              <div className="relative group w-[320px] h-[320px]">
+              <div className="relative group w-80 h-80">
 
                 {/* glow */}
                 <div
                   className="
                     absolute -inset-2
-                    bg-gradient-to-r from-blue-400/20 to-green-400/20
+                    bg-linear-to-r from-blue-400/20 to-green-400/20
                     blur-2xl opacity-0
                     group-hover:opacity-100
                     transition duration-500"
@@ -102,7 +101,7 @@ export default function Products({
                   />
 
                   {/* overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
 
                   {/* badge */}
                   <div
@@ -133,13 +132,13 @@ export default function Products({
             {/* PRODUTOS */}
             {products.map((product, i) => (
               <div key={i} className="min-w-full flex justify-center">
-                <div className="relative group w-[320px] h-[320px]">
+                <div className="relative group w-80 h-80">
 
                   {/* glow */}
                   <div
                     className="
                       absolute -inset-2
-                      bg-gradient-to-r from-blue-400/20 to-green-400/20
+                      bg-linear-to-r from-blue-400/20 to-green-400/20
                       blur-2xl opacity-0
                       group-hover:opacity-100
                       transition duration-500"
@@ -166,7 +165,7 @@ export default function Products({
                     />
 
                     {/* overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
 
                     {/* badge */}
                     <div
@@ -214,7 +213,7 @@ export default function Products({
                   ${
                     isOpen
                       ? `
-                        bg-gradient-to-br from-white/10 to-white/5
+                        bg-linear-to-br from-white/10 to-white/5
                         border-green-400/40
                         shadow-[0_0_30px_rgba(74,222,128,0.12)]
                         p-6 scale-[1.02]`
@@ -233,7 +232,7 @@ export default function Products({
                   className="
                     absolute inset-0 opacity-0 hover:opacity-100
                     transition duration-700
-                    bg-gradient-to-r from-blue-400/5 via-transparent to-green-400/5"
+                    bg-linear-to-r from-blue-400/5 via-transparent to-green-400/5"
                 ></div>
 
                 {/* header */}
@@ -298,7 +297,7 @@ export default function Products({
                       className="
                         inline-flex items-center gap-2
                         px-5 py-2.5 rounded-2xl
-                        bg-gradient-to-r from-green-400 to-emerald-300
+                        bg-linear-to-r from-green-400 to-emerald-300
                         text-black font-bold text-sm
                         transition-all duration-300
                         hover:scale-105
@@ -317,7 +316,7 @@ export default function Products({
           <div
             className="
               rounded-3xl border border-dashed border-white/15
-              bg-white/[0.03]
+              bg-white/3
               p-6 text-center
               text-gray-500
               hover:border-green-400/30

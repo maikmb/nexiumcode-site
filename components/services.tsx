@@ -16,7 +16,7 @@ type Service = {
         className="relative px-6 py-32 overflow-hidden"
         >
         {/* BG EFFECT */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 blur-[180px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-175 bg-blue-500/10 blur-[180px] rounded-full pointer-events-none" />
 
         {/* TITLE */}
         <div className="text-center mb-20 relative z-10">
@@ -60,7 +60,7 @@ type Service = {
                 group
                 relative
                 overflow-hidden
-                rounded-[32px]
+                rounded-4xl
                 border border-white/10
                 bg-white/5
                 backdrop-blur-xl
@@ -77,7 +77,7 @@ type Service = {
                 opacity-0
                 group-hover:opacity-100
                 transition-opacity duration-500
-                bg-gradient-to-br
+                bg-linear-to-br
                 from-blue-500/10
                 via-transparent
                 to-green-400/10"
@@ -102,7 +102,7 @@ type Service = {
                     className="
                     w-16 h-16
                     rounded-2xl
-                    bg-gradient-to-br
+                    bg-linear-to-br
                     from-green-500
                     to-cyan-400
                     flex items-center justify-center

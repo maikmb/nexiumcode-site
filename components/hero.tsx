@@ -5,14 +5,14 @@ export default function Hero() {
         <section className="relative flex flex-col items-center justify-center text-center px-6 pt-40 pb-32 overflow-hidden">
 
         {/* glow leve */}
-        <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/10 blur-3xl rounded-full"></div>
+        <div className="absolute top-50 left-1/2 -translate-x-1/2 w-150 h-150 bg-blue-500/10 blur-3xl rounded-full"></div>
 
         {/* conteúdo */}
         <div className="relative z-10">
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight text-white">
             Onde sua ideia se{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
                 transforma em solução
             </span>
             </h1>
@@ -72,15 +72,15 @@ export default function Hero() {
                 </span>
 
                 {/* reflexo */}
-                <div
-                    className="
-                    absolute inset-0
-                    bg-white/10
-                    translate-x-[-100%]
-                    group-hover:translate-x-[100%]
-                    transition-transform duration-700
-                    skew-x-12"
-                />
+            <div
+                className="
+                absolute inset-0
+                bg-white/10
+                translate-x-[-100%]
+                group-hover:translate-x-[100%]
+                transition-transform duration-700
+                skew-x-12"
+            />
                 </button>
             </a>
             </div>

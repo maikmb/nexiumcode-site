@@ -5,7 +5,7 @@ export default function Process() {
         <section id="processo" className="px-6 py-28 relative overflow-hidden">
 
         {/* background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-green-400/5 blur-[140px] rounded-full"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-175 bg-green-400/5 blur-[140px] rounded-full"></div>
 
         {/* título */}
         <div className="text-center mb-20 relative z-10">
@@ -15,8 +15,7 @@ export default function Process() {
                 px-4 py-1.5 rounded-full
                 bg-green-400/10 border border-green-400/20
                 text-green-400 text-sm font-medium
-                backdrop-blur-sm
-            "
+                backdrop-blur-sm"
             >
             ✦ Nosso Processo
             </span>
@@ -24,14 +23,14 @@ export default function Process() {
             <h2
             className="
                 mt-6 text-5xl md:text-6xl font-black
-                bg-gradient-to-r from-white via-blue-100 to-green-300
+                bg-linear-to-r from-white via-blue-100 to-green-300
                 bg-clip-text text-transparent
             "
             >
             Como trabalhamos
             </h2>
 
-            <div className="w-24 h-1 rounded-full bg-gradient-to-r from-blue-400 to-green-400 mx-auto mt-6"></div>
+            <div className="w-24 h-1 rounded-full bg-linear-to-r from-blue-400 to-green-400 mx-auto mt-6"></div>
 
             <p className="text-gray-400 text-center max-w-2xl mx-auto mt-8 text-lg leading-relaxed">
             Um fluxo simples, estratégico e eficiente. Porque projeto sem processo
@@ -46,10 +45,9 @@ export default function Process() {
             <div
             className="
                 hidden lg:block
-                absolute top-24 left-0 w-full h-[2px]
-                bg-gradient-to-r
-                from-transparent via-green-400/30 to-transparent
-            "
+                absolute top-24 left-0 w-full h-0.5
+                bg-linear-to-r
+                from-transparent via-green-400/30 to-transparent"
             ></div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 relative z-10">
@@ -86,13 +84,13 @@ export default function Process() {
                     group relative
                     rounded-3xl overflow-hidden
                     border border-white/10
-                    bg-white/[0.04]
+                    bg-white/4
                     backdrop-blur-xl
                     p-8
                     transition-all duration-500
                     hover:-translate-y-3
                     hover:border-green-400/30
-                    hover:bg-white/[0.06]
+                    hover:bg-white/6
                     hover:shadow-[0_0_35px_rgba(74,222,128,0.12)]
                 "
                 >
@@ -103,7 +101,7 @@ export default function Process() {
                     absolute inset-0 opacity-0
                     group-hover:opacity-100
                     transition duration-700
-                    bg-gradient-to-br
+                    bg-linear-to-br
                     from-green-400/5 via-transparent to-blue-400/5
                     "
                 ></div>
@@ -128,14 +126,13 @@ export default function Process() {
                     w-16 h-16 rounded-2xl
                     flex items-center justify-center
                     text-3xl
-                    bg-gradient-to-br from-green-400/20 to-blue-400/20
+                    bg-linear-to-br from-green-400/20 to-blue-400/20
                     border border-white/10
                     mb-8
                     transition-all duration-500
                     group-hover:scale-110
                     group-hover:rotate-3
-                    group-hover:shadow-[0_0_25px_rgba(74,222,128,0.2)]
-                    "
+                    group-hover:shadow-[0_0_25px_rgba(74,222,128,0.2)]"
                 >
                     {step.icon}
                 </div>
@@ -147,8 +144,7 @@ export default function Process() {
                     text-2xl font-bold
                     text-white mb-4
                     transition
-                    group-hover:text-green-400
-                    "
+                    group-hover:text-green-400"
                 >
                     {step.title}
                 </h3>
@@ -157,8 +153,7 @@ export default function Process() {
                 <p
                     className="
                     relative z-10
-                    text-gray-400 leading-relaxed text-sm
-                    "
+                    text-gray-400 leading-relaxed text-sm"
                 >
                     {step.desc}
                 </p>
@@ -168,10 +163,9 @@ export default function Process() {
                     className="
                     relative z-10
                     mt-8 h-1 w-16 rounded-full
-                    bg-gradient-to-r from-green-400 to-blue-400
+                    bg-linear-to-r from-green-400 to-blue-400
                     transition-all duration-500
-                    group-hover:w-28
-                    "
+                    group-hover:w-28"
                 ></div>
                 </div>
             ))}

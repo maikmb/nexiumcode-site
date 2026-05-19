@@ -14,7 +14,7 @@ type Person = {
         <section id="colaboradores" className="px-6 py-28 relative overflow-hidden">
         
         {/* background blur */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-green-400/10 blur-[140px] rounded-full"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-125 h-125 bg-green-400/10 blur-[140px] rounded-full"></div>
 
         <div className="relative z-10">
             
@@ -35,7 +35,7 @@ type Person = {
                 Colaboradores
             </h2>
 
-            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-linear-to-br from-green-400 to-blue-500 mx-auto rounded-full mt-6"></div>
 
             <p className="text-gray-400 text-center max-w-3xl mx-auto mt-8 leading-relaxed text-lg">
                 Conheça nosso time que está em crescimento constante, sempre buscando 
@@ -71,7 +71,7 @@ type Person = {
                     absolute inset-0 opacity-0
                     group-hover:opacity-100
                     transition duration-500
-                    bg-gradient-to-br
+                    bg-linear-to-br
                     from-green-400/10
                     via-transparent
                     to-blue-500/10"
