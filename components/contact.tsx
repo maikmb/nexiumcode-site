@@ -1,49 +1,149 @@
 "use client";
 
 export default function Contact() {
-return (
-    <section
+    return (
+        <section
         id="contato"
-        className="relative px-6 py-36 text-center overflow-hidden"
+        className="relative px-6 py-24 overflow-hidden"
         >
         {/* FUNDO */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F1F4A] via-[#081428] to-[#0a7a5d]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#081428] to-[#0F2D63]" />
 
         {/* GLOW */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.25),transparent_60%)]"></div>
+        <div className="absolute top-[-150px] left-[-100px] w-[400px] h-[400px] bg-green-400/10 blur-3xl rounded-full" />
+
+        <div className="absolute bottom-[-150px] right-[-100px] w-[400px] h-[400px] bg-blue-500/10 blur-3xl rounded-full" />
+
+        {/* GRID */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:60px_60px]" />
 
         {/* CONTEÚDO */}
-        <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Vamos construir seu próximo{" "}
-            <span className="text-green-400">software?</span>
+        <div className="relative z-10 max-w-4xl mx-auto">
+            <div
+            className="
+            relative overflow-hidden
+            rounded-[28px]
+            border border-white/10
+            bg-white/5
+            backdrop-blur-xl
+            px-8 py-14 md:px-14
+            shadow-[0_0_50px_rgba(0,0,0,0.3)]"
+            >
+            {/* brilho */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
+
+            {/* badge */}
+            <div className="flex justify-center mb-6">
+                <span
+                className="
+                px-4 py-1.5 rounded-full
+                border border-green-400/20
+                bg-green-400/10
+                text-green-400
+                text-xs font-medium"
+                >
+                ✦ Nexium Code
+                </span>
+            </div>
+
+            {/* título */}
+            <h2
+                className="
+                text-3xl md:text-5xl
+                font-black
+                text-center
+                leading-tight
+                text-white
+                mb-6"
+            >
+                Vamos transformar sua{" "}
+                <span className="text-green-400">
+                ideia
+                </span>{" "}
+                em software.
             </h2>
 
-            <p className="text-white/70 mb-10 text-lg">
-            Fale com a Nexium Code e transforme sua ideia em um produto digital real,
-            escalável e pronto para crescer.
+            {/* texto */}
+            <p
+                className="
+                text-center
+                text-gray-400
+                text-base
+                leading-relaxed
+                max-w-2xl
+                mx-auto
+                mb-10"
+            >
+                Criamos soluções digitais modernas, escaláveis e prontas para crescer com seu negócio.
             </p>
 
-            <button
-            className="
-            relative px-10 py-5 rounded-2xl font-semibold text-green-400
-            border border-green-400/40 overflow-hidden
-            animate-[glowPulse_2s_infinite]
-            transition-all duration-300
-            hover:scale-105 active:scale-95
+            {/* botões */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                
+                {/* botão principal */}
+                <a
+                href="mailto:relacionamento@nexiumcode.com.br"
+                className="
+                group relative overflow-hidden
+                px-7 py-3.5 rounded-2xl
+                bg-green-400
+                text-black font-semibold text-sm
+                transition-all duration-300
+                hover:scale-105
+                hover:shadow-[0_0_25px_rgba(74,222,128,0.45)]
+                active:scale-95"
+                >
+                <span className="relative z-10">
+                    Entrar em contato →
+                </span>
 
-            before:absolute before:inset-0 
-            before:bg-green-400 before:opacity-0 
-            before:transition-opacity before:duration-300
-            hover:before:opacity-100
+                {/* reflexo */}
+                <div
+                    className="
+                    absolute inset-0
+                    bg-white/20
+                    translate-x-[-100%]
+                    group-hover:translate-x-[100%]
+                    transition-transform duration-700
+                    skew-x-12"
+                />
+                </a>
 
-            hover:text-black
-            hover:shadow-[0_0_25px_rgba(74,222,128,0.6)]"
-            >
-            <span className="relative z-10">
-                Entrar em contato
-            </span>
-            </button>
+                {/* botão secundário */}
+                <a
+                href="https://www.linkedin.com/company/nexiumcode/about/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                group relative overflow-hidden
+                px-7 py-3.5 rounded-2xl
+                border border-white/10
+                bg-white/5
+                text-white text-sm font-medium
+                backdrop-blur
+                transition-all duration-300
+                hover:border-green-400/40
+                hover:bg-white/10
+                hover:scale-105
+                active:scale-95"
+                >
+                <span className="relative z-10">
+                    Conhecer a Nexium
+                </span>
+
+                {/* reflexo */}
+                <div
+                    className="
+                    absolute inset-0
+                    bg-white/10
+                    translate-x-[-100%]
+                    group-hover:translate-x-[100%]
+                    transition-transform duration-700
+                    skew-x-12"
+                />
+                </a>
+            </div>
+            </div>
         </div>
         </section>
     );
