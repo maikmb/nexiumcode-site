@@ -37,9 +37,7 @@ export default function Products({
 
         <h2
           className="
-            mt-6 text-5xl md:text-6xl font-black
-            bg-linear-to-r from-white via-blue-100 to-green-300
-            bg-clip-text text-transparent"
+            mt-6 text-5xl md:text-6xl font-black"
         >
           Nossos Produtos
         </h2>

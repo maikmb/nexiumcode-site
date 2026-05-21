@@ -5,9 +5,9 @@ export default function Footer() {
         <footer className="relative mt-16 overflow-hidden border-t border-white/10 bg-black">
 
         {/* glow */}
-        <div className="absolute top-[-120px] left-[-120px] w-80 h-80 bg-green-400/5 blur-3xl rounded-full" />
+        <div className="absolute top-30 left-30 w-80 h-80 bg-green-400/5 blur-3xl rounded-full" />
 
-        <div className="absolute bottom-[-120px] right-[-120px] w-80 h-80 bg-blue-500/5 blur-3xl rounded-full" />
+        <div className="absolute bottom-30 right-30 w-80 h-80 bg-blue-500/5 blur-3xl rounded-full" />
 
         {/* conteúdo */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
@@ -41,8 +41,7 @@ export default function Footer() {
                 group flex items-center gap-3
                 text-gray-300 text-sm
                 transition-all duration-300
-                hover:text-green-400
-                "
+                hover:text-green-400"
                 >
                 <div
                     className="
@@ -52,8 +51,7 @@ export default function Footer() {
                     flex items-center justify-center
                     transition-all duration-300
                     group-hover:border-green-400/40
-                    group-hover:bg-green-400/10
-                    "
+                    group-hover:bg-green-400/10"
                 >
                     in
                 </div>
@@ -70,8 +68,7 @@ export default function Footer() {
                 group flex items-center gap-3
                 text-gray-300 text-sm
                 transition-all duration-300
-                hover:text-green-400
-                "
+                hover:text-green-400"
                 >
                 <div
                     className="
@@ -81,8 +78,7 @@ export default function Footer() {
                     flex items-center justify-center
                     transition-all duration-300
                     group-hover:border-green-400/40
-                    group-hover:bg-green-400/10
-                    "
+                    group-hover:bg-green-400/10"
                 >
                     @
                 </div>
@@ -107,10 +103,6 @@ export default function Footer() {
                 </span>{" "}
                 — Todos os direitos reservados.
             </p>
-
-            <span className="text-gray-600 tracking-wide">
-                Built with Next.js
-            </span>
             </div>
         </div>
         </footer>

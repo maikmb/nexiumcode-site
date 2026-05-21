@@ -22,10 +22,7 @@ export default function Process() {
 
             <h2
             className="
-                mt-6 text-5xl md:text-6xl font-black
-                bg-linear-to-r from-white via-blue-100 to-green-300
-                bg-clip-text text-transparent
-            "
+                mt-6 text-5xl md:text-6xl font-black"
             >
             Como trabalhamos
             </h2>
@@ -91,8 +88,7 @@ export default function Process() {
                     hover:-translate-y-3
                     hover:border-green-400/30
                     hover:bg-white/6
-                    hover:shadow-[0_0_35px_rgba(74,222,128,0.12)]
-                "
+                    hover:shadow-[0_0_35px_rgba(74,222,128,0.12)]"
                 >
 
                 {/* brilho */}
@@ -102,8 +98,7 @@ export default function Process() {
                     group-hover:opacity-100
                     transition duration-700
                     bg-linear-to-br
-                    from-green-400/5 via-transparent to-blue-400/5
-                    "
+                    from-green-400/5 via-transparent to-blue-400/5"
                 ></div>
 
                 {/* número */}
@@ -113,8 +108,7 @@ export default function Process() {
                     text-5xl font-black
                     text-white/5
                     transition-all duration-500
-                    group-hover:text-green-400/10
-                    "
+                    group-hover:text-green-400/10"
                 >
                     {step.number}
                 </div>
