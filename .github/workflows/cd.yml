@@ -1,0 +1,67 @@
+name: Deploy Next.js to K3s VPS
+
+on:
+  push:
+    branches: [ "stage", "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build e Deploy
+    runs-on: [self-hosted]
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Gerar tag incremental
+        id: set-tag
+        shell: bash
+        run: |
+          DATE=$(date +'%Y%m%d-%H%M%S')
+          echo "image_tag=$DATE" >> $GITHUB_OUTPUT
+
+      # Build e push da imagem
+      - name: Build da imagem local
+        env:
+          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
+          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+        shell: bash
+        run: |
+          IMAGE=${IMAGE_NAME}:${IMAGE_TAG}
+          echo "Construindo imagem ${IMAGE}"
+          docker build -t $IMAGE .
+
+      - name: Push da imagem para Docker Hub
+        env:
+          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
+          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        shell: bash
+        run: |
+          echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+          docker push ${IMAGE_NAME}:${IMAGE_TAG}
+
+      # Deploy K3s
+      - name: Deploy no K3s Stage
+        if: github.ref == 'refs/heads/stage'
+        env:
+          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
+          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+          KUBE_CONFIG: /etc/rancher/k3s/k3s.yaml
+        shell: bash
+        run: |
+          kubectl --kubeconfig $KUBE_CONFIG -n apps set image deployment/nexiumcode-hml '*'=${IMAGE_NAME}:${IMAGE_TAG}
+          kubectl --kubeconfig $KUBE_CONFIG -n apps rollout status deployment/nexiumcode-hml
+
+      - name: Deploy no K3s Produção
+        if: github.ref == 'refs/heads/main'
+        env:
+          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
+          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+          KUBE_CONFIG: /etc/rancher/k3s/k3s.yaml
+        shell: bash
+        run: |
+          kubectl --kubeconfig $KUBE_CONFIG -n apps set image deployment/nexiumcode '*'=${IMAGE_NAME}:${IMAGE_TAG}
+          kubectl --kubeconfig $KUBE_CONFIG -n apps rollout status deployment/nexiumcode

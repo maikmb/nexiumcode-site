@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fbfe;
+  --foreground: #0c1b33;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Ocean blue palette derived from the Nexium Code logo */
+  --color-ocean-50: #eff8ff;
+  --color-ocean-100: #dbeffe;
+  --color-ocean-200: #bfe3fe;
+  --color-ocean-300: #93d2fd;
+  --color-ocean-400: #5fb8fa;
+  --color-ocean-500: #3a9af6;
+  --color-ocean-600: #247ceb;
+  --color-ocean-700: #1c64d8;
+  --color-ocean-800: #1e51af;
+  --color-ocean-900: #1e468a;
+  --color-ocean-950: #172c54;
+
+  --color-navy: #16336b;
+
+  --font-sans: var(--font-jakarta);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-18px);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #bfe3fe;
+  color: #16336b;
+}
+
+/* Scroll-reveal helper used by the <Reveal> component */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  [data-parallax] {
+    transform: none !important;
+  }
+}
