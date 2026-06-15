@@ -49,6 +49,7 @@
             sed -i 's#^\(\s*repository:\).*#\1 sniperpspg517/nexiumcodesite#' values.yaml
             sed -i "s#^\(\s*tag:\).*#\1 \"${IMAGE_TAG}\"#" values.yaml
             sed -i 's#^\(\s*targetPort:\).*#\1 80#' values.yaml
+            sed -i 's#- name: dockerhub-cred#- name: dockerhub-sniperpspg517#' values.yaml
             git config user.email "ci@nexiumcode.com.br"
             git config user.name "nexiumcode-ci"
             git add values.yaml
