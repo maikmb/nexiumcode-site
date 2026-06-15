@@ -1,67 +1,56 @@
-name: Deploy Next.js to K3s VPS
+  name: Build e Deploy (GitOps) — Next.js -> K3s
 
-on:
-  push:
-    branches: [ "stage", "main" ]
-  workflow_dispatch:
+  on:
+    push:
+      branches: [ "stage", "main" ]
+    workflow_dispatch:
 
-jobs:
-  build-and-deploy:
-    name: Build e Deploy
-    runs-on: [self-hosted]
+  jobs:
+    build-and-deploy:
+      name: Build, Push (Docker Hub) e GitOps
+      runs-on: ubuntu-latest   # runner do GitHub (grátis) — não precisa de self-hosted
+  
+      steps:
+        - name: Checkout do código do site
+          uses: actions/checkout@v4
 
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v4
+        - name: Gerar tag incremental
+          id: set-tag
+          shell: bash
+          run: echo "image_tag=$(date +'%Y%m%d-%H%M%S')" >> "$GITHUB_OUTPUT"
 
-      - name: Gerar tag incremental
-        id: set-tag
-        shell: bash
-        run: |
-          DATE=$(date +'%Y%m%d-%H%M%S')
-          echo "image_tag=$DATE" >> $GITHUB_OUTPUT
+        - name: Login no Docker Hub
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Build e push da imagem
-      - name: Build da imagem local
-        env:
-          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
-          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
-        shell: bash
-        run: |
-          IMAGE=${IMAGE_NAME}:${IMAGE_TAG}
-          echo "Construindo imagem ${IMAGE}"
-          docker build -t $IMAGE .
-
-      - name: Push da imagem para Docker Hub
-        env:
-          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
-          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        shell: bash
-        run: |
-          echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-          docker push ${IMAGE_NAME}:${IMAGE_TAG}
-
-      # Deploy K3s
-      - name: Deploy no K3s Stage
-        if: github.ref == 'refs/heads/stage'
-        env:
-          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
-          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
-          KUBE_CONFIG: /etc/rancher/k3s/k3s.yaml
-        shell: bash
-        run: |
-          kubectl --kubeconfig $KUBE_CONFIG -n apps set image deployment/nexiumcode-hml '*'=${IMAGE_NAME}:${IMAGE_TAG}
-          kubectl --kubeconfig $KUBE_CONFIG -n apps rollout status deployment/nexiumcode-hml
-
-      - name: Deploy no K3s Produção
-        if: github.ref == 'refs/heads/main'
-        env:
-          IMAGE_NAME: docker.io/nexiumcode/nexiumcode-site
-          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
-          KUBE_CONFIG: /etc/rancher/k3s/k3s.yaml
-        shell: bash
-        run: |
-          kubectl --kubeconfig $KUBE_CONFIG -n apps set image deployment/nexiumcode '*'=${IMAGE_NAME}:${IMAGE_TAG}
-          kubectl --kubeconfig $KUBE_CONFIG -n apps rollout status deployment/nexiumcode
+        - name: Build + Push da imagem
+          env:
+            IMAGE: docker.io/sniperpspg517/nexiumcodesite:${{ steps.set-tag.outputs.image_tag }}
+          shell: bash
+          run: |
+            set -e
+            docker build -t "$IMAGE" .
+            docker push "$IMAGE"
+  
+        - name: Atualizar manifests (infra-nexiumcode) e dar push
+          env:
+            IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+            INFRA_TOKEN: ${{ secrets.INFRA_TOKEN }}
+          shell: bash
+          run: |
+            set -e
+            BRANCH="${GITHUB_REF_NAME}"                                                                                                                                                                                  
+            rm -rf _infra
+            git clone --branch "$BRANCH" \
+              "https://x-access-token:${INFRA_TOKEN}@github.com/sniperpsp/infra-nexiumcode.git" _infra
+            cd _infra
+            sed -i 's#^\(\s*repository:\).*#\1 sniperpspg517/nexiumcodesite#' values.yaml
+            sed -i "s#^\(\s*tag:\).*#\1 \"${IMAGE_TAG}\"#" values.yaml
+            sed -i 's#^\(\s*targetPort:\).*#\1 80#' values.yaml
+            git config user.email "ci@nexiumcode.com.br"
+            git config user.name "nexiumcode-ci"
+            git add values.yaml
+            git commit -m "deploy: nexiumcodesite:${IMAGE_TAG} (${BRANCH})" || { echo "Sem mudancas"; exit 0; }                                                                                                          
+            git push origin "$BRANCH"
