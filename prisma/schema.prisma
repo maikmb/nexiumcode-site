@@ -69,3 +69,14 @@ model Value {
   description String
   order       Int    @default(0)
 }
+
+model HostedSite {
+  id          String   @id @default(cuid())
+  name        String
+  url         String
+  description String?
+  category    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

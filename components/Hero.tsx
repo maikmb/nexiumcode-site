@@ -60,7 +60,7 @@ export default function Hero({
             {badge}
           </motion.span>
 
-          <h1 className="font-display mt-7 text-balance text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.25rem]">
+          <h1 className="font-display mt-7 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem]">
             {words.map((word, i) => {
               const highlight = /impulsionam/i.test(word);
               return (
@@ -119,7 +119,7 @@ export default function Hero({
         >
           <Parallax speed={-0.06}>
             <div className="glass border-gradient glow mx-auto max-w-3xl overflow-hidden rounded-2xl p-2">
-              <div className="rounded-xl bg-[#070b16]/80 p-5 font-mono text-sm leading-7 text-ocean-100 md:p-8">
+              <div className="overflow-x-auto rounded-xl bg-[#070b16]/80 p-4 font-mono text-xs leading-7 text-ocean-100 sm:text-sm md:p-8">
                 <div className="mb-4 flex items-center gap-2" aria-hidden="true">
                   <span className="h-3 w-3 rounded-full bg-red-400/70" />
                   <span className="h-3 w-3 rounded-full bg-yellow-400/70" />

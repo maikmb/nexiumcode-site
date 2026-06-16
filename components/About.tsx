@@ -7,14 +7,19 @@ export default function About({
   aboutText,
   whatsappUrl,
   productCount,
+  hostedSiteCount,
 }: {
   aboutText: string;
   whatsappUrl: string;
   productCount: number;
+  hostedSiteCount: number;
 }) {
   const highlights = [
     { stat: "100%", label: "Sob medida — nada de soluções engessadas" },
     { stat: String(productCount), label: "Produtos próprios criados e mantidos" },
+    ...(hostedSiteCount > 0
+      ? [{ stat: String(hostedSiteCount) + "+", label: "Sites hospedados e monitorados" }]
+      : []),
     { stat: "24/7", label: "Sistemas monitorados e sempre no ar" },
   ];
 
@@ -51,7 +56,7 @@ export default function About({
               </a>
             </Reveal>
 
-            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {highlights.map((item, i) => (
                 <Reveal
                   from="right"

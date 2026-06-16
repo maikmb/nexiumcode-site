@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
-import { Users, Boxes, Sparkles, Gem, Settings as Cog, LogOut, ExternalLink } from "lucide-react";
+import { Users, Boxes, Sparkles, Gem, Settings as Cog, LogOut, ExternalLink, Globe } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { ToastProvider } from "./Toast";
 import FoundersManager from "./FoundersManager";
@@ -11,11 +11,13 @@ import ProductsManager from "./ProductsManager";
 import ServicesManager from "./ServicesManager";
 import ValuesManager from "./ValuesManager";
 import SettingsManager from "./SettingsManager";
+import HostedSitesManager from "./HostedSitesManager";
 
 const TABS = [
   { id: "settings", label: "Configurações", icon: Cog },
   { id: "founders", label: "Fundadores", icon: Users },
   { id: "products", label: "Produtos", icon: Boxes },
+  { id: "hosted-sites", label: "Sites Hospedados", icon: Globe },
   { id: "services", label: "Serviços", icon: Sparkles },
   { id: "values", label: "Valores", icon: Gem },
 ] as const;
@@ -116,6 +118,7 @@ export default function AdminShell({ userName }: { userName?: string | null }) {
               {tab === "settings" && <SettingsManager />}
               {tab === "founders" && <FoundersManager />}
               {tab === "products" && <ProductsManager />}
+              {tab === "hosted-sites" && <HostedSitesManager />}
               {tab === "services" && <ServicesManager />}
               {tab === "values" && <ValuesManager />}
             </motion.div>

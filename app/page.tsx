@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Solutions from "@/components/Solutions";
 import Products from "@/components/Products";
+import HostedSites from "@/components/HostedSites";
 import Team from "@/components/Team";
 import Values from "@/components/Values";
 import Process from "@/components/Process";
@@ -15,6 +16,7 @@ import {
   getProducts,
   getFounders,
   getValues,
+  getHostedSites,
   whatsappLink,
 } from "@/lib/content";
 
@@ -24,17 +26,19 @@ export const dynamic = "force-dynamic";
 const NAV_LINKS = [
   { href: "#servicos", label: "Serviços" },
   { href: "#produtos", label: "Produtos" },
+  { href: "#clientes", label: "Clientes" },
   { href: "#fundadores", label: "Fundadores" },
   { href: "#contato", label: "Contato" },
 ];
 
 export default async function Home() {
-  const [settings, services, products, founders, values] = await Promise.all([
+  const [settings, services, products, founders, values, hostedSites] = await Promise.all([
     getSettings(),
     getServices(),
     getProducts(),
     getFounders(),
     getValues(),
+    getHostedSites(),
   ]);
 
   const wa = whatsappLink(settings.whatsappNumber, settings.whatsappMessage);
@@ -51,10 +55,16 @@ export default async function Home() {
         />
         <Solutions services={services} />
         <Products products={products} />
+        <HostedSites sites={hostedSites} />
         <Team founders={founders} />
         <Values mission={settings.mission} vision={settings.vision} values={values} />
         <Process />
-        <About aboutText={settings.aboutText} whatsappUrl={wa} productCount={products.length} />
+        <About
+          aboutText={settings.aboutText}
+          whatsappUrl={wa}
+          productCount={products.length}
+          hostedSiteCount={hostedSites.length}
+        />
         <CTA whatsappUrl={wa} contactEmail={settings.contactEmail} />
       </main>
       <Footer

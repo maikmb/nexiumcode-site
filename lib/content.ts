@@ -48,6 +48,15 @@ export type ValueDTO = {
   order: number;
 };
 
+export type HostedSiteDTO = {
+  id: string;
+  name: string;
+  url: string;
+  description: string | null;
+  category: string | null;
+  order: number;
+};
+
 export type SettingsDTO = {
   whatsappNumber: string;
   whatsappMessage: string;
@@ -325,6 +334,24 @@ export async function getValues(): Promise<ValueDTO[]> {
     }));
   } catch {
     return DEFAULT_VALUES;
+  }
+}
+
+export async function getHostedSites(): Promise<HostedSiteDTO[]> {
+  try {
+    const rows = await prisma.hostedSite.findMany({
+      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
+    });
+    return rows.map((r) => ({
+      id: r.id,
+      name: r.name,
+      url: r.url,
+      description: r.description,
+      category: r.category,
+      order: r.order,
+    }));
+  } catch {
+    return [];
   }
 }
 
