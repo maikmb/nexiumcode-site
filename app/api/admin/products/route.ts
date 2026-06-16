@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
       tagline: b.tagline ?? "",
       description: b.description ?? "",
       logoUrl: b.logoUrl || null,
+      url: b.url || null,
       gradient: b.gradient || "from-ocean-500 to-ocean-700",
       featured: Boolean(b.featured),
       order: Number.isFinite(b.order) ? b.order : 0,

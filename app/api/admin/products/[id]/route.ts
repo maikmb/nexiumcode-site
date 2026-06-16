@@ -12,6 +12,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     if (b[k] !== undefined) data[k] = b[k];
   }
   if (b.logoUrl !== undefined) data.logoUrl = b.logoUrl || null;
+  if (b.url !== undefined) data.url = b.url || null;
   if (b.featured !== undefined) data.featured = Boolean(b.featured);
   if (b.order !== undefined) data.order = Number(b.order) || 0;
   const item = await prisma.product.update({ where: { id }, data });

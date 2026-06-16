@@ -12,6 +12,7 @@ type Product = {
   tagline: string;
   description: string;
   logoUrl: string | null;
+  url: string | null;
   gradient: string;
   featured: boolean;
   order: number;
@@ -148,6 +149,16 @@ export default function ProductsManager() {
             <div className="md:col-span-2">
               <Field label="Descrição">
                 <Textarea rows={3} value={p.description} onChange={(e) => update(p.id, { description: e.target.value })} />
+              </Field>
+            </div>
+            <div className="md:col-span-2">
+              <Field label="Link do produto (abre em nova aba ao clicar no card)">
+                <Input
+                  type="url"
+                  placeholder="https://aquibruce.com.br"
+                  value={p.url ?? ""}
+                  onChange={(e) => update(p.id, { url: e.target.value })}
+                />
               </Field>
             </div>
             <Field label="Gradiente">

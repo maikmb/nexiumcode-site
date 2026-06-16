@@ -27,6 +27,7 @@ export type ProductDTO = {
   tagline: string;
   description: string;
   logoUrl: string | null;
+  url?: string | null;
   gradient: string;
   featured: boolean;
   order: number;
@@ -284,6 +285,7 @@ export async function getProducts(): Promise<ProductDTO[]> {
       tagline: r.tagline,
       description: r.description,
       logoUrl: r.logoUrl,
+      url: r.url,
       gradient: r.gradient,
       featured: r.featured,
       order: r.order,

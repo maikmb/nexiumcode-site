@@ -47,6 +47,7 @@ model Product {
   tagline     String
   description String
   logoUrl     String?
+  url         String?
   gradient    String   @default("from-ocean-500 to-ocean-700")
   featured    Boolean  @default(false)
   order       Int      @default(0)

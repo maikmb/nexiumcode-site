@@ -1,9 +1,36 @@
 "use client";
 
+import type { ReactNode } from "react";
+import { ArrowUpRight } from "lucide-react";
 import Parallax from "./Parallax";
 import Tilt from "./Tilt";
 import { Reveal } from "./Motion";
 import type { ProductDTO } from "@/lib/content";
+
+/** Envolve o card num link (nova aba) quando o produto tem URL. */
+function CardShell({ href, children }: { href?: string | null; children: ReactNode }) {
+  if (!href) return <>{children}</>;
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Abrir produto em nova aba"
+      className="block h-full rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400"
+    >
+      {children}
+    </a>
+  );
+}
+
+/** Selo "Abrir ↗" que aparece no hover quando o card é clicável. */
+function LinkCue() {
+  return (
+    <span className="absolute right-5 top-5 z-10 inline-flex items-center gap-1 rounded-full border border-ocean-400/30 bg-ocean-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ocean-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      Abrir <ArrowUpRight size={13} />
+    </span>
+  );
+}
 
 /**
  * Seção de Produtos — recebe os produtos do banco via props.
@@ -41,7 +68,9 @@ function ProductBadge({ product, size }: { product: ProductDTO; size: "md" | "lg
 function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }) {
   return (
     <Reveal delay={delay} className="sm:col-span-2">
+      <CardShell href={product.url}>
       <Tilt className="shine-on-hover group glass-strong border-gradient glow relative overflow-hidden rounded-3xl text-white transition-transform duration-300 hover:-translate-y-1.5">
+        {product.url && <LinkCue />}
         <div
           className="animate-blob pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ocean-400/25 blur-3xl"
           aria-hidden="true"
@@ -60,6 +89,7 @@ function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }
           </div>
         </div>
       </Tilt>
+      </CardShell>
     </Reveal>
   );
 }
@@ -67,7 +97,9 @@ function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }
 function StandardCard({ product, delay }: { product: ProductDTO; delay: number }) {
   return (
     <Reveal delay={delay}>
+      <CardShell href={product.url}>
       <Tilt className="group glass glow-hover relative h-full overflow-hidden rounded-3xl transition-transform duration-300 hover:-translate-y-1.5">
+        {product.url && <LinkCue />}
         <div className={`h-1.5 bg-gradient-to-r ${product.gradient} shadow-[0_0_18px_rgba(95,184,250,0.5)]`} />
         <div className="p-8">
           <ProductBadge product={product} size="md" />
@@ -78,6 +110,7 @@ function StandardCard({ product, delay }: { product: ProductDTO; delay: number }
           <p className="mt-4 leading-relaxed text-foreground/55">{product.description}</p>
         </div>
       </Tilt>
+      </CardShell>
     </Reveal>
   );
 }
