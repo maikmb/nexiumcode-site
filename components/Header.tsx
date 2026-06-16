@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 type NavLink = { href: string; label: string };
 
@@ -47,6 +48,7 @@ export default function Header({
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gradient-to-r from-ocean-400 to-ocean-600 shadow-[0_0_8px_rgba(95,184,250,0.8)] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
+          <ThemeToggle />
           <a
             href={whatsappUrl}
             target="_blank"
@@ -57,9 +59,11 @@ export default function Header({
           </a>
         </nav>
 
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground"
           aria-expanded={open}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           onClick={() => setOpen((v) => !v)}
@@ -72,6 +76,7 @@ export default function Header({
             )}
           </svg>
         </button>
+        </div>
       </div>
 
       {open && (

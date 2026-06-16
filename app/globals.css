@@ -9,12 +9,31 @@
 @source inline("{from-,via-,to-}ocean-{400,500,600,700,800,900,950}");
 @source inline("bg-gradient-to-{r,br,bl,tr}");
 
-:root {
-  /* Modo NEON / DARK — fundo quase-preto com sub-tom navy/ocean */
+/* Tema escuro (padrão) */
+:root,
+.dark {
   --background: #05070f;
   --background-2: #080b18;
   --foreground: #e8eefc;
   --muted: #9fb2d6;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.09);
+  --card-strong-bg: rgba(10, 16, 32, 0.72);
+  --card-strong-border: rgba(255, 255, 255, 0.1);
+  color-scheme: dark;
+}
+
+/* Tema claro */
+.light {
+  --background: #f0f5ff;
+  --background-2: #e8f0fe;
+  --foreground: #0d1b3e;
+  --muted: #4a6190;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-border: rgba(36, 124, 235, 0.15);
+  --card-strong-bg: rgba(240, 245, 255, 0.88);
+  --card-strong-border: rgba(36, 124, 235, 0.18);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -60,7 +79,6 @@
 html {
   scroll-behavior: smooth;
   background: var(--background);
-  color-scheme: dark;
 }
 
 body {
@@ -68,30 +86,41 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
-  /* base sutil de gradiente radial ocean no topo, fundindo no preto */
+  background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Gradientes de fundo por tema */
+.dark body {
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36, 124, 235, 0.18), transparent 60%),
     radial-gradient(ellipse 60% 50% at 100% 0%, rgba(124, 92, 255, 0.08), transparent 55%);
-  background-attachment: fixed;
+}
+
+.light body {
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -5%, rgba(36, 124, 235, 0.12), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 10%, rgba(95, 184, 250, 0.10), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 0% 80%, rgba(36, 124, 235, 0.07), transparent 50%);
 }
 
 ::selection {
   background: rgba(95, 184, 250, 0.3);
-  color: #eaf4ff;
+  color: var(--foreground);
 }
 
-/* ----- Scrollbar neon ----- */
+/* ----- Scrollbar ----- */
 ::-webkit-scrollbar {
   width: 11px;
   height: 11px;
 }
 ::-webkit-scrollbar-track {
-  background: #05070f;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #1e51af, #247ceb);
   border-radius: 99px;
-  border: 2px solid #05070f;
+  border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #247ceb, #5fb8fa);
@@ -141,6 +170,12 @@ body {
     0 0 42px rgba(36, 124, 235, 0.35);
 }
 
+.light .neon-text {
+  text-shadow:
+    0 0 12px rgba(36, 124, 235, 0.2),
+    0 0 24px rgba(36, 124, 235, 0.12);
+}
+
 .glow {
   box-shadow:
     0 0 0 1px rgba(95, 184, 250, 0.12),
@@ -167,20 +202,20 @@ body {
 }
 
 /* =============================================================================
- *  GLASSMORPHISM (vidro escuro)
+ *  GLASSMORPHISM (adapta ao tema)
  * ============================================================================= */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-bg);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--card-border);
 }
 
 .glass-strong {
-  background: rgba(10, 16, 32, 0.72);
+  background: var(--card-strong-bg);
   backdrop-filter: blur(18px) saturate(150%);
   -webkit-backdrop-filter: blur(18px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--card-strong-border);
 }
 
 /* borda com gradiente luminoso (usa máscara para borda fina) */

@@ -119,7 +119,7 @@ export default function Hero({
         >
           <Parallax speed={-0.06}>
             <div className="glass border-gradient glow mx-auto max-w-3xl overflow-hidden rounded-2xl p-2">
-              <div className="overflow-x-auto rounded-xl bg-[#070b16]/80 p-4 font-mono text-xs leading-7 text-ocean-100 sm:text-sm md:p-8">
+              <div className="overflow-x-auto rounded-xl bg-[#070b16]/90 dark:bg-[#070b16]/80 p-4 font-mono text-xs leading-7 text-ocean-100 sm:text-sm md:p-8">
                 <div className="mb-4 flex items-center gap-2" aria-hidden="true">
                   <span className="h-3 w-3 rounded-full bg-red-400/70" />
                   <span className="h-3 w-3 rounded-full bg-yellow-400/70" />

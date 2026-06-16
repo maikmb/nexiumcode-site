@@ -15,7 +15,7 @@ export default function Footer({
   contactEmail: string;
 }) {
   return (
-    <footer className="relative border-t border-white/10 bg-[#04060d]">
+    <footer className="relative border-t border-white/10 dark:border-white/10 dark:bg-[#04060d] bg-[#eaf0ff]">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ocean-400/60 to-transparent"
         aria-hidden="true"
