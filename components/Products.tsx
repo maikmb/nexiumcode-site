@@ -82,7 +82,7 @@ function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }
               <span className="pulse-dot h-1.5 w-1.5 rounded-full dark:bg-ocean-300 bg-ocean-600" />
               {product.tagline}
             </span>
-            <h3 className="font-display mt-4 text-3xl font-bold tracking-tight neon-text md:text-4xl">
+            <h3 className="font-display mt-4 text-3xl font-bold tracking-tight text-foreground dark:neon-text md:text-4xl">
               {product.name}
             </h3>
             <p className="mt-3 max-w-xl leading-relaxed text-foreground/70">{product.description}</p>
