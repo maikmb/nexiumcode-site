@@ -78,7 +78,7 @@ function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }
         <div className="relative grid gap-6 p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-8 md:p-10">
           <ProductBadge product={product} size="lg" />
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-ocean-600/30 dark:border-ocean-400/30 bg-white/90 dark:bg-ocean-500/10 shadow-sm dark:shadow-none px-3 py-1 text-xs font-bold uppercase tracking-widest dark:text-ocean-200 text-ocean-800">
+            <span className="inline-flex items-center gap-2 rounded-full border border-ocean-600/30 dark:border-ocean-400/30 bg-white/90 dark:bg-ocean-500/10 shadow-sm dark:shadow-none px-3 py-1 text-xs font-bold uppercase tracking-widest dark:text-ocean-200 text-foreground">
               <span className="pulse-dot h-1.5 w-1.5 rounded-full dark:bg-ocean-300 bg-ocean-600" />
               {product.tagline}
             </span>
