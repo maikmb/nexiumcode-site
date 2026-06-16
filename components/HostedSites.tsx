@@ -41,7 +41,7 @@ function SiteCard({ site, delay }: { site: HostedSiteDTO; delay: number }) {
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-3">
               {favicon && (
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl dark:bg-white/10 bg-ocean-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={favicon}
@@ -53,7 +53,7 @@ function SiteCard({ site, delay }: { site: HostedSiteDTO; delay: number }) {
                 </div>
               )}
               <div>
-                <h3 className="font-display font-bold text-foreground group-hover:text-ocean-200 transition-colors">
+                <h3 className="font-display font-bold text-foreground dark:group-hover:text-ocean-200 group-hover:text-ocean-700 transition-colors">
                   {site.name}
                 </h3>
                 <p className="font-mono text-[11px] text-ocean-400/80">{domain}</p>
@@ -61,7 +61,7 @@ function SiteCard({ site, delay }: { site: HostedSiteDTO; delay: number }) {
             </div>
             <ExternalLink
               size={15}
-              className="mt-1 shrink-0 text-ocean-400/40 transition-all group-hover:text-ocean-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="mt-1 shrink-0 text-ocean-400/40 transition-all dark:group-hover:text-ocean-300 group-hover:text-ocean-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </div>
 
@@ -70,7 +70,7 @@ function SiteCard({ site, delay }: { site: HostedSiteDTO; delay: number }) {
           )}
 
           {site.category && (
-            <span className="mt-3 inline-block rounded-full border border-ocean-400/20 bg-ocean-500/10 px-2.5 py-0.5 font-mono text-[11px] text-ocean-300">
+            <span className="mt-3 inline-block rounded-full border border-ocean-400/20 bg-ocean-500/10 px-2.5 py-0.5 font-mono text-[11px] dark:text-ocean-300 text-ocean-700">
               {site.category}
             </span>
           )}

@@ -29,10 +29,10 @@
   --background-2: #e8f0fe;
   --foreground: #0d1b3e;
   --muted: #4a6190;
-  --card-bg: rgba(255, 255, 255, 0.65);
-  --card-border: rgba(36, 124, 235, 0.15);
-  --card-strong-bg: rgba(240, 245, 255, 0.88);
-  --card-strong-border: rgba(36, 124, 235, 0.18);
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-border: rgba(36, 124, 235, 0.22);
+  --card-strong-bg: rgba(248, 251, 255, 0.94);
+  --card-strong-border: rgba(36, 124, 235, 0.25);
   color-scheme: light;
 }
 
@@ -174,6 +174,24 @@ body {
   text-shadow:
     0 0 12px rgba(36, 124, 235, 0.2),
     0 0 24px rgba(36, 124, 235, 0.12);
+}
+
+/* Light mode: cards get a shadow so they visually lift off the near-white bg */
+.light .glass {
+  box-shadow:
+    0 1px 3px rgba(36, 124, 235, 0.08),
+    0 4px 20px -4px rgba(36, 124, 235, 0.12);
+}
+.light .glass-strong {
+  box-shadow:
+    0 2px 6px rgba(36, 124, 235, 0.1),
+    0 8px 32px -6px rgba(36, 124, 235, 0.16);
+}
+.light .glow {
+  box-shadow:
+    0 0 0 1px rgba(36, 124, 235, 0.14),
+    0 8px 40px -8px rgba(36, 124, 235, 0.22),
+    0 0 60px -20px rgba(36, 124, 235, 0.1);
 }
 
 .glow {

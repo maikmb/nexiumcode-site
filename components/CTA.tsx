@@ -38,15 +38,15 @@ function CopyEmailBtn({ email }: { email: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="glass group flex w-full items-center justify-between gap-3 rounded-full px-5 py-4 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-ocean-400/40 hover:text-ocean-200 sm:w-auto sm:min-w-[280px]"
+      className="glass group flex w-full items-center justify-between gap-3 rounded-full px-5 py-4 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-ocean-400/40 dark:hover:text-ocean-200 hover:text-ocean-700 sm:w-auto sm:min-w-[280px]"
       title="Copiar e-mail"
     >
       <span className="truncate font-mono text-sm">{email}</span>
       <span
         className={`flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide transition-all ${
           copied
-            ? "bg-emerald-500/20 text-emerald-300"
-            : "bg-ocean-500/15 text-ocean-300 group-hover:bg-ocean-500/25"
+            ? "bg-emerald-500/20 dark:text-emerald-300 text-emerald-700"
+            : "bg-ocean-500/15 dark:text-ocean-300 text-ocean-700 group-hover:bg-ocean-500/25"
         }`}
       >
         {copied ? (

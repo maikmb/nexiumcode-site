@@ -80,7 +80,7 @@ export default function Values({
               delay={(i % 4) * 0.09}
               className="group glass glow-hover rounded-2xl p-6"
             >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-ocean-500/10 font-mono text-sm font-extrabold text-ocean-300 ring-1 ring-ocean-400/30 transition-colors group-hover:bg-ocean-500/20">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-ocean-500/10 font-mono text-sm font-extrabold dark:text-ocean-300 text-ocean-700 ring-1 ring-ocean-400/30 transition-colors group-hover:bg-ocean-500/20">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-4 font-bold text-foreground">{value.title}</h3>
