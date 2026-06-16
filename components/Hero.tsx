@@ -54,7 +54,7 @@ export default function Hero({
         <div className="mx-auto max-w-4xl text-center">
           <motion.span
             {...fadeUp(0)}
-            className="inline-flex items-center gap-2 rounded-full border border-ocean-400/30 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-4 py-1.5 text-sm font-medium dark:text-ocean-200 text-ocean-700"
+            className="inline-flex items-center gap-2 rounded-full border border-ocean-600/30 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm dark:shadow-none px-4 py-1.5 text-sm font-medium dark:text-ocean-200 text-ocean-800"
           >
             <span className="pulse-dot h-2 w-2 rounded-full bg-ocean-400" />
             {badge}
