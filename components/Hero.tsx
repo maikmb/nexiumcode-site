@@ -1,6 +1,7 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import Parallax from "./Parallax";
-import Reveal from "./Reveal";
-import { whatsappLink } from "@/data/site";
 
 function WhatsAppGlyph() {
   return (
@@ -10,82 +11,128 @@ function WhatsAppGlyph() {
   );
 }
 
-export default function Hero() {
+const ease = [0.22, 1, 0.36, 1] as const;
+
+export default function Hero({
+  badge,
+  title,
+  subtitle,
+  whatsappUrl,
+}: {
+  badge: string;
+  title: string;
+  subtitle: string;
+  whatsappUrl: string;
+}) {
+  const reduce = useReducedMotion();
+  const fadeUp = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.7, delay, ease },
+  });
+
+  // Reveal cinético: stagger por palavra, destacando "impulsionam" em neon.
+  const words = title.split(/\s+/);
+
   return (
-    <section className="relative overflow-hidden pb-24 pt-36 md:pb-36 md:pt-48">
-      {/* Decorative parallax background */}
+    <section className="relative overflow-hidden pb-24 pt-36 md:pb-36 md:pt-52">
+      {/* Fundo: grade técnica + orbs locais (o mesh global vem do layout) */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="grid-lines" />
         <Parallax speed={-0.15} className="absolute -top-32 right-[-10%] h-[480px] w-[480px]">
-          <div className="h-full w-full rounded-full bg-gradient-to-br from-ocean-300/40 to-ocean-500/20 blur-3xl" />
+          <div className="animate-blob h-full w-full rounded-full bg-gradient-to-br from-ocean-500/25 to-ocean-700/10 blur-3xl" />
         </Parallax>
-        <Parallax speed={0.1} className="absolute -left-40 top-40 h-[420px] w-[420px]">
-          <div className="h-full w-full rounded-full bg-gradient-to-tr from-ocean-200/50 to-ocean-400/20 blur-3xl" />
+        <Parallax speed={0.12} className="absolute -left-40 top-52 h-[420px] w-[420px]">
+          <div
+            className="animate-blob h-full w-full rounded-full bg-gradient-to-tr from-ocean-600/25 to-ocean-400/10 blur-3xl"
+            style={{ animationDelay: "-6s" }}
+          />
         </Parallax>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(30,81,175,0.07)_1px,transparent_0)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black,transparent)]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-ocean-200 bg-white/70 px-4 py-1.5 text-sm font-medium text-ocean-700 backdrop-blur">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-ocean-500" />
-              Sistemas sob medida & consultoria em tecnologia
-            </span>
-          </Reveal>
+        <div className="mx-auto max-w-4xl text-center">
+          <motion.span
+            {...fadeUp(0)}
+            className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-ocean-200"
+          >
+            <span className="pulse-dot h-2 w-2 rounded-full bg-ocean-400" />
+            {badge}
+          </motion.span>
 
-          <Reveal delay={100}>
-            <h1 className="mt-6 text-balance text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl md:text-6xl">
-              Criamos sistemas que{" "}
-              <span className="bg-gradient-to-r from-ocean-600 via-ocean-500 to-ocean-400 bg-clip-text text-transparent">
-                impulsionam
-              </span>{" "}
-              o seu negócio
-            </h1>
-          </Reveal>
+          <h1 className="font-display mt-7 text-balance text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.25rem]">
+            {words.map((word, i) => {
+              const highlight = /impulsionam/i.test(word);
+              return (
+                <motion.span
+                  key={`${word}-${i}`}
+                  initial={reduce ? false : { opacity: 0, y: "0.4em", filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ duration: 0.7, delay: 0.12 + i * 0.07, ease }}
+                  className={`mr-[0.28em] inline-block ${
+                    highlight
+                      ? "text-gradient text-gradient-animated bg-gradient-to-r from-ocean-300 via-ocean-400 to-ocean-600 neon-text"
+                      : ""
+                  }`}
+                >
+                  {word}
+                </motion.span>
+              );
+            })}
+          </h1>
 
-          <Reveal delay={200}>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-navy/65 md:text-xl">
-              A NexiumCode desenvolve sites, sistemas e automações sob medida e
-              oferece consultoria em tecnologia — do conceito ao lançamento — para
-              empresas que querem crescer com soluções digitais bem feitas.
-            </p>
-          </Reveal>
+          <motion.p
+            {...fadeUp(0.1 + words.length * 0.07)}
+            className="mx-auto mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-foreground/65 md:text-xl"
+          >
+            {subtitle}
+          </motion.p>
 
-          <Reveal delay={300}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-ocean-600 px-8 py-4 text-base font-semibold text-white shadow-xl shadow-ocean-600/30 transition-all hover:-translate-y-0.5 hover:bg-ocean-700 hover:shadow-2xl hover:shadow-ocean-600/40 sm:w-auto"
-              >
-                <WhatsAppGlyph />
-                Falar no WhatsApp
-              </a>
-              <a
-                href="#servicos"
-                className="w-full rounded-full border border-ocean-200 bg-white/80 px-8 py-4 text-base font-semibold text-navy backdrop-blur transition-all hover:-translate-y-0.5 hover:border-ocean-300 hover:bg-white sm:w-auto"
-              >
-                Nossos serviços
-              </a>
-            </div>
-          </Reveal>
+          <motion.div
+            {...fadeUp(0.2 + words.length * 0.07)}
+            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+          >
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shine-on-hover glow-sm group relative inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-ocean-400/40 bg-gradient-to-r from-ocean-600 to-ocean-500 px-8 py-4 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_0_36px_-4px_rgba(95,184,250,0.8)] sm:w-auto"
+            >
+              <WhatsAppGlyph />
+              Falar no WhatsApp
+            </a>
+            <a
+              href="#produtos"
+              className="glass w-full rounded-full px-8 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-ocean-400/40 hover:text-ocean-200 sm:w-auto"
+            >
+              Ver produtos
+            </a>
+          </motion.div>
         </div>
 
-        {/* Floating code-card mock */}
-        <Reveal delay={450} className="mt-16 md:mt-24">
+        {/* Terminal / HUD de vidro neon */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.45 + words.length * 0.07, ease }}
+          className="mt-16 md:mt-24"
+        >
           <Parallax speed={-0.06}>
-            <div className="mx-auto max-w-3xl rounded-2xl border border-ocean-100 bg-white/80 p-2 shadow-2xl shadow-ocean-900/10 backdrop-blur">
-              <div className="rounded-xl bg-gradient-to-br from-ocean-950 to-ocean-900 p-5 font-mono text-sm leading-7 text-ocean-100 md:p-8">
-                <div className="mb-4 flex gap-2" aria-hidden="true">
-                  <span className="h-3 w-3 rounded-full bg-red-400/80" />
-                  <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
-                  <span className="h-3 w-3 rounded-full bg-green-400/80" />
+            <div className="glass border-gradient glow mx-auto max-w-3xl overflow-hidden rounded-2xl p-2">
+              <div className="rounded-xl bg-[#070b16]/80 p-5 font-mono text-sm leading-7 text-ocean-100 md:p-8">
+                <div className="mb-4 flex items-center gap-2" aria-hidden="true">
+                  <span className="h-3 w-3 rounded-full bg-red-400/70" />
+                  <span className="h-3 w-3 rounded-full bg-yellow-400/70" />
+                  <span className="h-3 w-3 rounded-full bg-green-400/70" />
+                  <span className="ml-3 text-xs tracking-widest text-ocean-300/60">
+                    ~/nexiumcode — build.ts
+                  </span>
                 </div>
                 <p>
                   <span className="text-ocean-400">const</span>{" "}
-                  <span className="text-ocean-200">seuNegocio</span> ={" "}
-                  <span className="text-ocean-400">await</span> nexiumcode.
+                  <span className="text-foreground">seuNegocio</span> ={" "}
+                  <span className="text-ocean-400">await</span>{" "}
+                  <span className="scan-text font-semibold">nexiumcode</span>.
                   <span className="text-ocean-300">build</span>({"{"}
                 </p>
                 <p className="pl-6">
@@ -98,13 +145,11 @@ export default function Hero() {
                   qualidade: <span className="text-emerald-300">&quot;sempre&quot;</span>,
                 </p>
                 <p>{"}"});</p>
-                <p className="mt-2 text-ocean-400/70">
-                  {"// "}pronto para escalar 🚀
-                </p>
+                <p className="mt-2 text-ocean-400/60">{"// "}pronto para escalar 🚀</p>
               </div>
             </div>
           </Parallax>
-        </Reveal>
+        </motion.div>
       </div>
     </section>
   );

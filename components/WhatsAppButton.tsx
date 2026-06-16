@@ -1,13 +1,11 @@
-import { whatsappLink } from "@/data/site";
-
 /**
  * Botão flutuante de WhatsApp, fixo no canto inferior direito.
- * O número e a mensagem vêm de `data/site.ts` (WHATSAPP_NUMBER).
+ * O link já vem montado (número + mensagem) do banco via props.
  */
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ whatsappUrl }: { whatsappUrl: string }) {
   return (
     <a
-      href={whatsappLink()}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"

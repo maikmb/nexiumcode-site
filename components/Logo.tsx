@@ -34,9 +34,11 @@ export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark />
-      <span className="text-xl font-bold tracking-tight text-navy">
-        Nexium<span className="text-ocean-600">code</span>
+      <span className="drop-shadow-[0_0_12px_rgba(95,184,250,0.55)]">
+        <LogoMark />
+      </span>
+      <span className="font-display text-xl font-bold tracking-tight text-foreground">
+        Nexium<span className="text-gradient">code</span>
       </span>
     </span>
   );

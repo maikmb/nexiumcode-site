@@ -3,9 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { navLinks, whatsappLink } from "@/data/site";
 
-export default function Header() {
+type NavLink = { href: string; label: string };
+
+export default function Header({
+  navLinks,
+  whatsappUrl,
+}: {
+  navLinks: NavLink[];
+  whatsappUrl: string;
+}) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -20,8 +27,8 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "bg-white/85 backdrop-blur-xl shadow-[0_1px_0_0_rgba(22,51,107,0.08)]"
-          : "bg-transparent"
+          ? "glass-strong border-b border-white/10 shadow-[0_8px_40px_-16px_rgba(36,124,235,0.4)]"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-[72px] md:px-8">
@@ -34,16 +41,17 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-navy/70 transition-colors hover:text-ocean-600"
+              className="group relative text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
             >
               {link.label}
+              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-gradient-to-r from-ocean-400 to-ocean-600 shadow-[0_0_8px_rgba(95,184,250,0.8)] transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
           <a
-            href={whatsappLink()}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-ocean-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-ocean-600/25 transition-all hover:bg-ocean-700 hover:shadow-ocean-600/40"
+            className="glow-sm rounded-full border border-ocean-400/40 bg-ocean-600/90 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-ocean-300 hover:bg-ocean-500 hover:shadow-[0_0_28px_-4px_rgba(95,184,250,0.7)]"
           >
             Fale com a gente
           </a>
@@ -51,7 +59,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-navy md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground md:hidden"
           aria-expanded={open}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           onClick={() => setOpen((v) => !v)}
@@ -68,7 +76,7 @@ export default function Header() {
 
       {open && (
         <nav
-          className="border-t border-ocean-100 bg-white/95 px-5 pb-6 pt-3 backdrop-blur-xl md:hidden"
+          className="glass-strong border-t border-white/10 px-5 pb-6 pt-3 md:hidden"
           aria-label="Navegação móvel"
         >
           <ul className="flex flex-col gap-1">
@@ -76,7 +84,7 @@ export default function Header() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="block rounded-lg px-3 py-3 text-base font-medium text-navy/80 hover:bg-ocean-50"
+                  className="block rounded-lg px-3 py-3 text-base font-medium text-foreground/80 transition-colors hover:bg-white/5 hover:text-foreground"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
@@ -85,10 +93,10 @@ export default function Header() {
             ))}
             <li className="mt-2">
               <a
-                href={whatsappLink()}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-full bg-ocean-600 px-5 py-3 text-center text-base font-semibold text-white"
+                className="glow-sm block rounded-full border border-ocean-400/40 bg-ocean-600 px-5 py-3 text-center text-base font-semibold text-white"
                 onClick={() => setOpen(false)}
               >
                 Fale com a gente

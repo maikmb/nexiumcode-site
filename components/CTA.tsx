@@ -1,5 +1,6 @@
-import Reveal from "./Reveal";
-import { whatsappLink, CONTACT_EMAIL } from "@/data/site";
+"use client";
+
+import { Reveal } from "./Motion";
 
 function WhatsAppGlyph() {
   return (
@@ -9,37 +10,43 @@ function WhatsAppGlyph() {
   );
 }
 
-export default function CTA() {
+export default function CTA({
+  whatsappUrl,
+  contactEmail,
+}: {
+  whatsappUrl: string;
+  contactEmail: string;
+}) {
   return (
     <section id="contato" className="scroll-mt-24 py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-5 md:px-8">
-        <Reveal className="relative overflow-hidden rounded-[2rem] border border-ocean-100 bg-white p-10 text-center shadow-xl shadow-ocean-500/10 md:p-16">
+        <Reveal className="glass-strong border-gradient glow relative overflow-hidden rounded-[2rem] p-10 text-center md:p-16">
           <div
-            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[120%] -translate-x-1/2 bg-gradient-to-b from-ocean-100/80 to-transparent blur-2xl"
+            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[120%] -translate-x-1/2 bg-gradient-to-b from-ocean-500/30 to-transparent blur-3xl"
             aria-hidden="true"
           />
-          <h2 className="relative text-balance text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
+          <h2 className="font-display relative text-balance text-3xl font-bold tracking-tight text-foreground neon-text md:text-5xl">
             Pronto para tirar sua ideia do papel?
           </h2>
-          <p className="relative mx-auto mt-4 max-w-xl text-lg text-navy/65">
+          <p className="relative mx-auto mt-4 max-w-xl text-lg text-foreground/65">
             Conte para a gente o que você quer construir. Respondemos rápido,
             sem compromisso e sem juridiquês.
           </p>
           <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={whatsappLink()}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-4 text-base font-semibold text-white shadow-xl shadow-[#25D366]/30 transition-all hover:-translate-y-0.5 hover:bg-[#1ebe5b] sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-4 text-base font-semibold text-white shadow-[0_0_28px_-4px_rgba(37,211,102,0.7)] transition-all hover:-translate-y-0.5 hover:bg-[#1ebe5b] hover:shadow-[0_0_40px_-2px_rgba(37,211,102,0.9)] sm:w-auto"
             >
               <WhatsAppGlyph />
               Falar no WhatsApp
             </a>
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=Quero%20come%C3%A7ar%20um%20projeto`}
-              className="w-full rounded-full border border-ocean-200 bg-white px-8 py-4 text-base font-semibold text-navy transition-all hover:-translate-y-0.5 hover:border-ocean-300 sm:w-auto"
+              href={`mailto:${contactEmail}?subject=Quero%20come%C3%A7ar%20um%20projeto`}
+              className="glass w-full rounded-full px-8 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-ocean-400/40 hover:text-ocean-200 sm:w-auto"
             >
-              {CONTACT_EMAIL}
+              {contactEmail}
             </a>
           </div>
         </Reveal>

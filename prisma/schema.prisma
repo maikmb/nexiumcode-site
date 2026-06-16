@@ -1,0 +1,70 @@
+// Prisma schema — NexiumCode site (CMS próprio)
+// Banco: SQLite (dev: file:./dev.db | prod: file:/app/data/nexium.db via volume)
+// Obs.: SQLite no Prisma não suporta @db.Text nem enums nativos — usamos String simples.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// Pares chave/valor para textos editáveis do site
+/// (whatsappNumber, whatsappMessage, contactEmail, heroTitle, heroSubtitle,
+///  heroBadge, aboutText, mission, vision, etc.)
+model SiteSetting {
+  key   String @id @unique
+  value String
+}
+
+model Founder {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  bio       String
+  photoUrl  String?
+  direction String   @default("up") // "left" | "right" | "up"
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  tagline     String
+  description String
+  logoUrl     String?
+  gradient    String   @default("from-ocean-500 to-ocean-700")
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  iconKey     String @default("spark")
+  order       Int    @default(0)
+}
+
+model Value {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  order       Int    @default(0)
+}

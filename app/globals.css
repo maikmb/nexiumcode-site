@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
+/* -----------------------------------------------------------------------------
+ *  SAFELIST de gradientes dinâmicos
+ *  Os gradientes dos produtos vêm do BANCO em runtime (ex.: "from-ocean-500
+ *  via-ocean-600 to-ocean-800"), então o Tailwind não consegue descobri-los
+ *  escaneando o código. Forçamos a geração com @source inline.
+ * --------------------------------------------------------------------------- */
+@source inline("{from-,via-,to-}ocean-{400,500,600,700,800,900,950}");
+@source inline("bg-gradient-to-{r,br,bl,tr}");
+
 :root {
-  --background: #f8fbfe;
-  --foreground: #0c1b33;
+  /* Modo NEON / DARK — fundo quase-preto com sub-tom navy/ocean */
+  --background: #05070f;
+  --background-2: #080b18;
+  --foreground: #e8eefc;
+  --muted: #9fb2d6;
 }
 
 @theme inline {
@@ -24,7 +36,12 @@
 
   --color-navy: #16336b;
 
+  /* tons de apoio para profundidade neon (usados com muita sutileza) */
+  --color-cyan-neon: #5fb8fa;
+  --color-violet-neon: #7c5cff;
+
   --font-sans: var(--font-jakarta);
+  --font-display: var(--font-display);
 
   --animate-float: float 7s ease-in-out infinite;
   --animate-float-slow: float 11s ease-in-out infinite;
@@ -42,6 +59,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
+  color-scheme: dark;
 }
 
 body {
@@ -49,15 +68,229 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  /* base sutil de gradiente radial ocean no topo, fundindo no preto */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36, 124, 235, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(124, 92, 255, 0.08), transparent 55%);
+  background-attachment: fixed;
 }
 
 ::selection {
-  background: #bfe3fe;
-  color: #16336b;
+  background: rgba(95, 184, 250, 0.3);
+  color: #eaf4ff;
 }
 
-/* Scroll-reveal helper used by the <Reveal> component.
-   Direction is controlled by data-reveal: "up" (default), "left", "right". */
+/* ----- Scrollbar neon ----- */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: #05070f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1e51af, #247ceb);
+  border-radius: 99px;
+  border: 2px solid #05070f;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #247ceb, #5fb8fa);
+}
+
+/* =============================================================================
+ *  TIPOGRAFIA DISPLAY
+ * ============================================================================= */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* =============================================================================
+ *  TEXTO COM GRADIENTE OCEAN
+ * ============================================================================= */
+.text-gradient {
+  background-image: linear-gradient(110deg, #93d2fd 0%, #5fb8fa 35%, #247ceb 70%, #1e51af 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-animated {
+  background-size: 220% 220%;
+  animation: gradient-pan 7s ease infinite;
+}
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* =============================================================================
+ *  NEON GLOW (texto + caixa)
+ * ============================================================================= */
+.neon-text {
+  text-shadow:
+    0 0 18px rgba(95, 184, 250, 0.45),
+    0 0 42px rgba(36, 124, 235, 0.35);
+}
+
+.glow {
+  box-shadow:
+    0 0 0 1px rgba(95, 184, 250, 0.12),
+    0 8px 40px -8px rgba(36, 124, 235, 0.45),
+    0 0 80px -20px rgba(95, 184, 250, 0.35);
+}
+
+.glow-sm {
+  box-shadow: 0 0 24px -6px rgba(36, 124, 235, 0.5);
+}
+
+.glow-hover {
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.glow-hover:hover {
+  border-color: rgba(95, 184, 250, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(95, 184, 250, 0.2),
+    0 16px 50px -12px rgba(36, 124, 235, 0.5),
+    0 0 60px -16px rgba(95, 184, 250, 0.4);
+}
+
+/* =============================================================================
+ *  GLASSMORPHISM (vidro escuro)
+ * ============================================================================= */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.glass-strong {
+  background: rgba(10, 16, 32, 0.72);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* borda com gradiente luminoso (usa máscara para borda fina) */
+.border-gradient {
+  position: relative;
+}
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(95, 184, 250, 0.6), rgba(36, 124, 235, 0.1) 40%, transparent 70%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =============================================================================
+ *  MESH GRADIENT animado (orbs grandes e borrados ao fundo)
+ * ============================================================================= */
+.mesh-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+  opacity: 0.55;
+}
+
+@keyframes mesh-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -8%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-7%, 5%, 0) scale(0.92);
+  }
+}
+.animate-mesh {
+  animation: mesh-drift 22s ease-in-out infinite;
+}
+
+/* =============================================================================
+ *  GRADE / LINHAS técnicas com máscara radial
+ * ============================================================================= */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(95, 184, 250, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(95, 184, 250, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black, transparent 75%);
+}
+
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, rgba(95, 184, 250, 0.12) 1px, transparent 0);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 70%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 70%);
+}
+
+/* =============================================================================
+ *  GRÃO / NOISE — overlay full-screen fixo (feTurbulence em data-URI)
+ * ============================================================================= */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* =============================================================================
+ *  BARRA DE PROGRESSO DE SCROLL (neon, fixa no topo)
+ * ============================================================================= */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform-origin: 0 50%;
+  z-index: 70;
+  background: linear-gradient(90deg, #1e51af, #247ceb 45%, #5fb8fa 100%);
+  box-shadow: 0 0 14px rgba(95, 184, 250, 0.8);
+}
+
+/* =============================================================================
+ *  SCROLL-REVEAL helper (mantido para compatibilidade)
+ * ============================================================================= */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -67,21 +300,149 @@ body {
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
-
 .reveal[data-reveal="left"] {
   transform: translateX(-48px);
 }
-
 .reveal[data-reveal="right"] {
   transform: translateX(48px);
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translate(0, 0);
 }
 
+/* =============================================================================
+ *  TILT 3D sutil (cards) — controlado por CSS vars via JS inline
+ * ============================================================================= */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* =============================================================================
+ *  ANIMAÇÕES auxiliares
+ * ============================================================================= */
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(24px, -28px) scale(1.08);
+  }
+  66% {
+    transform: translate(-20px, 18px) scale(0.94);
+  }
+}
+.animate-blob {
+  animation: blob 16s ease-in-out infinite;
+}
+
+/* pulso suave do selo/badge */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(95, 184, 250, 0.6);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 6px rgba(95, 184, 250, 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* faixa de brilho que cruza um elemento no hover */
+@keyframes shine {
+  from {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+  to {
+    transform: translateX(220%) skewX(-12deg);
+  }
+}
+.shine-on-hover {
+  position: relative;
+  overflow: hidden;
+}
+.shine-on-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-12deg);
+  pointer-events: none;
+}
+.shine-on-hover:hover::after {
+  animation: shine 0.9s ease;
+}
+
+/* shimmer/scan que cruza um texto (logo / nome) continuamente */
+@keyframes scan-text {
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 250% 0;
+  }
+}
+.scan-text {
+  position: relative;
+  background-image: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.75) 50%,
+    transparent 65%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: scan-text 4.5s ease-in-out infinite;
+}
+
+/* marquee discreto */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* anel de pulso do botão WhatsApp */
+@keyframes wa-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* =============================================================================
+ *  REDUCED MOTION
+ * ============================================================================= */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .reveal,
   .reveal[data-reveal="left"],
   .reveal[data-reveal="right"] {
@@ -92,17 +453,23 @@ body {
   [data-parallax] {
     transform: none !important;
   }
-}
-
-/* Subtle pulse ring used by the floating WhatsApp button */
-@keyframes wa-ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.55;
+  .animate-blob,
+  .animate-mesh,
+  .animate-marquee,
+  .text-gradient-animated,
+  .scan-text,
+  .pulse-dot {
+    animation: none;
   }
-  70%,
-  100% {
-    transform: scale(1.9);
-    opacity: 0;
+  .scan-text {
+    -webkit-text-fill-color: currentColor;
+    color: inherit;
+    background: none;
+  }
+  .tilt {
+    transform: none !important;
+  }
+  .shine-on-hover:hover::after {
+    animation: none;
   }
 }

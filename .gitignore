@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# banco SQLite (dev) e volume de dados
+dev.db
+dev.db-journal
+*.db
+*.db-journal
+/data
+
+# uploads locais (mantém só o .gitkeep)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# prisma client gerado
+/node_modules/.prisma

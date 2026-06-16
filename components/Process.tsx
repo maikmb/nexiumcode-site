@@ -1,4 +1,6 @@
-import Reveal from "./Reveal";
+"use client";
+
+import { Reveal } from "./Motion";
 
 const steps = [
   {
@@ -33,20 +35,20 @@ export default function Process() {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_1.3fr]">
           <Reveal className="lg:sticky lg:top-28">
-            <span className="text-sm font-bold uppercase tracking-widest text-ocean-600">
-              Como trabalhamos
+            <span className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-ocean-400">
+              <span className="text-ocean-500/60">05</span> / Como trabalhamos
             </span>
-            <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
+            <h2 className="font-display mt-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-5xl">
               Um processo claro, do início ao fim
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-navy/65">
+            <p className="mt-4 text-lg leading-relaxed text-foreground/60">
               Software bom nasce de comunicação boa. Nosso processo é
               transparente: você sempre sabe em que pé está o projeto, quanto
               custa e o que vem a seguir.
             </p>
             <a
               href="#contato"
-              className="mt-8 inline-flex items-center gap-2 font-semibold text-ocean-600 transition-colors hover:text-ocean-700"
+              className="mt-8 inline-flex items-center gap-2 font-semibold text-ocean-300 transition-colors hover:text-ocean-200"
             >
               Vamos conversar sobre o seu projeto
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -66,18 +68,18 @@ export default function Process() {
               <Reveal
                 as="li"
                 key={step.number}
-                delay={i * 100}
-                className="relative flex gap-6 rounded-2xl border border-ocean-100 bg-white p-7 shadow-sm transition-all duration-300 hover:border-ocean-200 hover:shadow-lg hover:shadow-ocean-500/10"
+                delay={i * 0.1}
+                className="glass glow-hover relative flex gap-6 rounded-2xl p-7"
               >
                 <span
-                  className="bg-gradient-to-br from-ocean-400 to-ocean-700 bg-clip-text font-mono text-3xl font-extrabold text-transparent"
+                  className="font-display bg-gradient-to-br from-ocean-300 to-ocean-600 bg-clip-text font-mono text-3xl font-bold text-transparent neon-text"
                   aria-hidden="true"
                 >
                   {step.number}
                 </span>
                 <div>
-                  <h3 className="text-lg font-bold text-navy">{step.title}</h3>
-                  <p className="mt-1.5 leading-relaxed text-navy/60">{step.description}</p>
+                  <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
+                  <p className="mt-1.5 leading-relaxed text-foreground/55">{step.description}</p>
                 </div>
               </Reveal>
             ))}

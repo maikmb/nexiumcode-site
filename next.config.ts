@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Site totalmente estático: gera ./out para ser servido pelo nginx no K3s.
-  output: "export",
+  // App full-stack servido com `next start` (não é mais static export).
+  // Uploads locais em /public/uploads — desativamos a otimização de imagem.
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;

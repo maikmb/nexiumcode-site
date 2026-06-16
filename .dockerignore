@@ -6,3 +6,8 @@ out
 .claude
 legacy
 *.md
+dev.db
+*.db
+data
+public/uploads/*
+!public/uploads/.gitkeep

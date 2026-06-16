@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NexiumCode — site + CMS próprio
 
-## Getting Started
+App full-stack em **Next.js 16** (App Router) com **Prisma + SQLite**, **NextAuth v4**
+(credenciais) e painel administrativo em `/gerencial`. O site público lê todo o
+conteúdo do banco em runtime; o admin edita fundadores, produtos, serviços,
+valores e configurações (WhatsApp, contato, hero, missão, visão), com upload de
+fotos/logos.
 
-First, run the development server:
+## Stack
+- Next.js 16 + React 19 + Tailwind v4 (paleta *ocean blue*, fonte Plus Jakarta Sans)
+- Prisma 6 + SQLite (`DATABASE_URL`)
+- NextAuth v4 (CredentialsProvider, sessão JWT, bcrypt)
+- framer-motion (efeitos), lucide-react (ícones), react-dropzone (uploads)
 
+## Rodando local
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+
+# 1) gerar client + criar o banco
+DATABASE_URL="file:./dev.db" npx prisma generate
+DATABASE_URL="file:./dev.db" npx prisma db push
+
+# 2) semear admin + conteúdo inicial (idempotente)
+DATABASE_URL="file:./dev.db" ADMIN_EMAIL=contato@nexiumcode.com.br ADMIN_PASSWORD=teste123 node seed.mjs
+
+# 3) build + start (ou `npm run dev` para desenvolvimento)
+DATABASE_URL="file:./dev.db" NEXTAUTH_SECRET=devsecret NEXTAUTH_URL=http://localhost:3000 npm run build
+DATABASE_URL="file:./dev.db" NEXTAUTH_SECRET=devsecret NEXTAUTH_URL=http://localhost:3000 npm start
 ```
+Veja `.env.example` para todas as variáveis.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Site público: `/`
+- Login admin: `/login`
+- Painel: `/gerencial` (protegido por middleware → redireciona p/ `/login` sem sessão)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
+- `prisma/schema.prisma` — modelos (User, SiteSetting, Founder, Product, Service, Value)
+- `seed.mjs` — admin + conteúdo inicial (idempotente; roda no start do container)
+- `lib/` — `prisma.ts`, `auth.ts`, `content.ts` (leitura c/ fallback), `serviceIcons.tsx`, `guard.ts`
+- `app/api/admin/*` — CRUD protegido (founders/products/services/values/settings)
+- `app/api/upload` — upload protegido → `public/uploads/`
+- `components/` — site público (props do banco) + `components/admin/*` (painel)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Produção (container)
+`docker build` usa o `Dockerfile` (Node 20, `prisma generate`, `next build`). No
+start: `prisma db push && node seed.mjs && next start`. Variáveis esperadas:
+`DATABASE_URL=file:/app/data/nexium.db`, `NEXTAUTH_SECRET`, `NEXTAUTH_URL`,
+`ADMIN_EMAIL`, `ADMIN_PASSWORD`. Montar volumes em `/app/data` (banco) e
+`/app/public/uploads` (imagens).
