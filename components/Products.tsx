@@ -26,7 +26,7 @@ function CardShell({ href, children }: { href?: string | null; children: ReactNo
 /** Selo "Abrir ↗" que aparece no hover quando o card é clicável. */
 function LinkCue() {
   return (
-    <span className="absolute right-5 top-5 z-10 inline-flex items-center gap-1 rounded-full border border-ocean-400/30 bg-ocean-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ocean-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+    <span className="absolute right-5 top-5 z-10 inline-flex items-center gap-1 rounded-full border border-ocean-400/30 bg-ocean-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide dark:text-ocean-200 text-ocean-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
       Abrir <ArrowUpRight size={13} />
     </span>
   );
@@ -69,7 +69,7 @@ function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }
   return (
     <Reveal delay={delay} className="sm:col-span-2">
       <CardShell href={product.url}>
-      <Tilt className="shine-on-hover group glass-strong border-gradient glow relative overflow-hidden rounded-3xl text-white transition-transform duration-300 hover:-translate-y-1.5">
+      <Tilt className="shine-on-hover group glass-strong border-gradient glow relative overflow-hidden rounded-3xl dark:text-white text-foreground transition-transform duration-300 hover:-translate-y-1.5">
         {product.url && <LinkCue />}
         <div
           className="animate-blob pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ocean-400/25 blur-3xl"
@@ -78,8 +78,8 @@ function FeaturedCard({ product, delay }: { product: ProductDTO; delay: number }
         <div className="relative grid gap-6 p-8 md:grid-cols-[auto_1fr] md:items-center md:gap-8 md:p-10">
           <ProductBadge product={product} size="lg" />
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-ocean-400/30 bg-ocean-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-ocean-200">
-              <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-ocean-300" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-ocean-400/30 bg-ocean-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest dark:text-ocean-200 text-ocean-700">
+              <span className="pulse-dot h-1.5 w-1.5 rounded-full dark:bg-ocean-300 bg-ocean-600" />
               {product.tagline}
             </span>
             <h3 className="font-display mt-4 text-3xl font-bold tracking-tight neon-text md:text-4xl">

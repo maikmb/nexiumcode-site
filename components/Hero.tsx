@@ -54,7 +54,7 @@ export default function Hero({
         <div className="mx-auto max-w-4xl text-center">
           <motion.span
             {...fadeUp(0)}
-            className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium text-ocean-200"
+            className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium dark:text-ocean-200 text-ocean-700"
           >
             <span className="pulse-dot h-2 w-2 rounded-full bg-ocean-400" />
             {badge}
@@ -103,7 +103,7 @@ export default function Hero({
             </a>
             <a
               href="#produtos"
-              className="glass w-full rounded-full px-8 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-ocean-400/40 hover:text-ocean-200 sm:w-auto"
+              className="glass w-full rounded-full px-8 py-4 text-base font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-ocean-400/40 dark:hover:text-ocean-200 hover:text-ocean-700 sm:w-auto"
             >
               Ver produtos
             </a>
