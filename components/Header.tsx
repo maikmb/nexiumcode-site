@@ -3,13 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
-
-const links = [
-  { href: "#solucoes", label: "Soluções" },
-  { href: "#produtos", label: "Produtos" },
-  { href: "#processo", label: "Como trabalhamos" },
-  { href: "#sobre", label: "Sobre" },
-];
+import { navLinks, whatsappLink } from "@/data/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -31,12 +25,12 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-[72px] md:px-8">
-        <Link href="/" aria-label="Nexium Code — página inicial" onClick={() => setOpen(false)}>
+        <Link href="/" aria-label="NexiumCode — página inicial" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navegação principal">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -46,7 +40,9 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#contato"
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-ocean-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-ocean-600/25 transition-all hover:bg-ocean-700 hover:shadow-ocean-600/40"
           >
             Fale com a gente
@@ -76,7 +72,7 @@ export default function Header() {
           aria-label="Navegação móvel"
         >
           <ul className="flex flex-col gap-1">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -89,7 +85,9 @@ export default function Header() {
             ))}
             <li className="mt-2">
               <a
-                href="#contato"
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block rounded-full bg-ocean-600 px-5 py-3 text-center text-base font-semibold text-white"
                 onClick={() => setOpen(false)}
               >

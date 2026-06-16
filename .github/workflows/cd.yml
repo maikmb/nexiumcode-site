@@ -1,57 +1,64 @@
-  name: Build e Deploy (GitOps) — Next.js -> K3s
+name: Build e Deploy (GitOps) — Next.js -> K3s
 
-  on:
-    push:
-      branches: [ "stage", "main" ]
-    workflow_dispatch:
+on:
+  push:
+    branches: [ "stage", "main" ]
+  workflow_dispatch:
 
-  jobs:
-    build-and-deploy:
-      name: Build, Push (Docker Hub) e GitOps
-      runs-on: ubuntu-latest   # runner do GitHub (grátis) — não precisa de self-hosted
-  
-      steps:
-        - name: Checkout do código do site
-          uses: actions/checkout@v4
+jobs:
+  build-and-deploy:
+    name: Build, Push (Docker Hub) e GitOps
+    runs-on: ubuntu-latest   # runner do GitHub (grátis) — não precisa de self-hosted
 
-        - name: Gerar tag incremental
-          id: set-tag
-          shell: bash
-          run: echo "image_tag=$(date +'%Y%m%d-%H%M%S')" >> "$GITHUB_OUTPUT"
+    steps:
+      - name: Checkout do código do site
+        uses: actions/checkout@v4
 
-        - name: Login no Docker Hub
-          uses: docker/login-action@v3
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Gerar tag incremental
+        id: set-tag
+        shell: bash
+        run: echo "image_tag=$(date +'%Y%m%d-%H%M%S')" >> "$GITHUB_OUTPUT"
 
-        - name: Build + Push da imagem
-          env:
-            IMAGE: docker.io/sniperpspg517/nexiumcodesite:${{ steps.set-tag.outputs.image_tag }}
-          shell: bash
-          run: |
-            set -e
-            docker build -t "$IMAGE" .
-            docker push "$IMAGE"
-  
-        - name: Atualizar manifests (infra-nexiumcode) e dar push
-          env:
-            IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
-            INFRA_TOKEN: ${{ secrets.INFRA_TOKEN }}
-          shell: bash
-          run: |
-            set -e
-            BRANCH="${GITHUB_REF_NAME}"                                                                                                                                                                                  
-            rm -rf _infra
-            git clone --branch "$BRANCH" \
-              "https://x-access-token:${INFRA_TOKEN}@github.com/sniperpsp/infra-nexiumcode.git" _infra
-            cd _infra
-            sed -i 's#^\(\s*repository:\).*#\1 sniperpspg517/nexiumcodesite#' values.yaml
-            sed -i "s#^\(\s*tag:\).*#\1 \"${IMAGE_TAG}\"#" values.yaml
-            sed -i 's#^\(\s*targetPort:\).*#\1 80#' values.yaml
-            sed -i 's#- name: dockerhub-cred#- name: dockerhub-sniperpspg517#' values.yaml
-            git config user.email "ci@nexiumcode.com.br"
-            git config user.name "nexiumcode-ci"
-            git add values.yaml
-            git commit -m "deploy: nexiumcodesite:${IMAGE_TAG} (${BRANCH})" || { echo "Sem mudancas"; exit 0; }                                                                                                          
-            git push origin "$BRANCH"
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build + Push da imagem
+        env:
+          IMAGE: docker.io/sniperpspg517/nexiumcodesite:${{ steps.set-tag.outputs.image_tag }}
+        shell: bash
+        run: |
+          set -e
+          echo "==> Build/Push ${IMAGE}"
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
+
+      # GitOps: atualiza a imagem no repo de manifests (infra-nexiumcode).
+      # O ArgoCD detecta o commit e sincroniza o deploy (sem kubectl, sem conflito com o selfHeal).
+      - name: Atualizar manifests (infra-nexiumcode) e dar push
+        env:
+          IMAGE_TAG: ${{ steps.set-tag.outputs.image_tag }}
+          INFRA_TOKEN: ${{ secrets.INFRA_TOKEN }}
+        shell: bash
+        run: |
+          set -e
+          BRANCH="${GITHUB_REF_NAME}"   # 'stage' (HML) ou 'main' (PRD)
+          echo "==> Atualizando infra-nexiumcode na branch ${BRANCH}"
+          rm -rf _infra
+          git clone --branch "$BRANCH" \
+            "https://x-access-token:${INFRA_TOKEN}@github.com/sniperpsp/infra-nexiumcode.git" _infra
+          cd _infra
+          # Aponta o chart para a imagem do site + corrige a porta do service (nginx escuta na 80)
+          # + usa o pull secret da conta sniperpspg517 (imagem privada). Idempotente em ambas as branches.
+          sed -i 's#^\(\s*repository:\).*#\1 sniperpspg517/nexiumcodesite#' values.yaml
+          sed -i "s#^\(\s*tag:\).*#\1 \"${IMAGE_TAG}\"#" values.yaml
+          sed -i 's#^\(\s*targetPort:\).*#\1 80#' values.yaml
+          sed -i 's#- name: dockerhub-cred#- name: dockerhub-sniperpspg517#' values.yaml
+          git config user.email "ci@nexiumcode.com.br"
+          git config user.name "nexiumcode-ci"
+          git add values.yaml
+          git commit -m "deploy: sniperpspg517/nexiumcodesite:${IMAGE_TAG} (${BRANCH})" || { echo "Sem mudancas"; exit 0; }
+          git push origin "$BRANCH"
+          echo "==> Push feito. O ArgoCD sincroniza o deploy automaticamente."

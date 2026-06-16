@@ -7,13 +7,16 @@ type RevealProps = {
   className?: string;
   /** Stagger delay in milliseconds */
   delay?: number;
-  as?: "div" | "section" | "li" | "span";
+  /** Entrance direction: "up" (default), "left" or "right". */
+  from?: "up" | "left" | "right";
+  as?: "div" | "section" | "li" | "span" | "article";
 };
 
 export default function Reveal({
   children,
   className = "",
   delay = 0,
+  from = "up",
   as: Tag = "div",
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
@@ -42,6 +45,7 @@ export default function Reveal({
     <Tag
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
+      data-reveal={from}
       className={`reveal ${className}`}
       style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
     >

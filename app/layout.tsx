@@ -13,22 +13,24 @@ const siteUrl = "https://www.nexiumcode.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Nexium Code | Desenvolvimento de Software Sob Medida",
-    template: "%s | Nexium Code",
+    default: "NexiumCode | Criação de Sistemas e Consultoria em Tecnologia",
+    template: "%s | NexiumCode",
   },
   description:
-    "A Nexium Code cria software sob medida, aplicativos e plataformas digitais que aceleram o crescimento do seu negócio. Conheça nossas soluções e produtos digitais.",
+    "A NexiumCode cria sites, sistemas e automações sob medida e oferece consultoria em tecnologia. Conheça nossos serviços e produtos digitais: Aquibruce, EiWhats e Eibilly.",
   keywords: [
-    "desenvolvimento de software",
+    "criação de sistemas",
+    "criação de sites",
+    "consultoria em tecnologia",
+    "automações",
+    "migração de sistemas",
+    "hospedagem",
     "software sob medida",
-    "fábrica de software",
-    "desenvolvimento web",
-    "desenvolvimento de aplicativos",
     "produtos digitais",
-    "Nexium Code",
+    "NexiumCode",
   ],
-  authors: [{ name: "Nexium Code" }],
-  creator: "Nexium Code",
+  authors: [{ name: "NexiumCode" }],
+  creator: "NexiumCode",
   alternates: {
     canonical: "/",
   },
@@ -36,10 +38,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: siteUrl,
-    siteName: "Nexium Code",
-    title: "Nexium Code | Desenvolvimento de Software Sob Medida",
+    siteName: "NexiumCode",
+    title: "NexiumCode | Criação de Sistemas e Consultoria em Tecnologia",
     description:
-      "Software sob medida e produtos digitais que aceleram o crescimento do seu negócio.",
+      "Criação de sites, sistemas e automações sob medida e consultoria em tecnologia para o seu negócio.",
     images: [
       {
         url: "/og-image.png",
@@ -51,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexium Code | Desenvolvimento de Software Sob Medida",
+    title: "NexiumCode | Criação de Sistemas e Consultoria em Tecnologia",
     description:
-      "Software sob medida e produtos digitais que aceleram o crescimento do seu negócio.",
+      "Criação de sites, sistemas e automações sob medida e consultoria em tecnologia para o seu negócio.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -71,21 +73,25 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Nexium Code",
+  name: "NexiumCode",
   url: siteUrl,
   logo: `${siteUrl}/logo.svg`,
   description:
-    "Empresa de desenvolvimento de software sob medida e criação de produtos digitais.",
-  email: "contato@nexiumcode.com",
+    "Empresa de criação de sistemas, sites e automações sob medida e consultoria em tecnologia.",
+  email: "contato@nexiumcode.com.br",
+  founders: [
+    { "@type": "Person", name: "Djair Silva" },
+    { "@type": "Person", name: "Maik Moura" },
+  ],
   sameAs: [],
   makesOffer: [
     {
       "@type": "Offer",
       itemOffered: {
         "@type": "Service",
-        name: "Desenvolvimento de software sob medida",
+        name: "Criação de sistemas e consultoria em tecnologia",
         description:
-          "Sistemas web, aplicativos e integrações construídos sob medida para o seu negócio.",
+          "Sites, sistemas, automações, hospedagem, migrações e consultoria construídos sob medida para o seu negócio.",
       },
     },
   ],
