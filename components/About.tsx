@@ -62,7 +62,7 @@ export default function About({
                   from="right"
                   key={item.label}
                   delay={i * 0.12}
-                  className="glass rounded-2xl p-6 transition-colors hover:border-ocean-400/40"
+                  className="rounded-2xl border border-white/10 bg-white/[0.08] backdrop-blur-sm p-6 transition-colors hover:border-ocean-400/40"
                 >
                   <p className="font-display bg-gradient-to-r from-ocean-200 to-ocean-400 bg-clip-text text-3xl font-bold text-transparent neon-text">
                     {item.stat}
